@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('rating');
             $table->string('category');
             $table->longText('story');
+            $table->bigInteger('views')->default(0);
+            $table->bigInteger('likes')->default(0);
+            $table->bigInteger('comments')->default(0);
             $table->timestamps();
         });
     }

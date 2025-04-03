@@ -33,6 +33,7 @@ class CreateStory extends Component
         $this->reset();
         session()->flash('message', 'Story posted successfully!');
 
+        return redirect('dashboard');
 
     }
 

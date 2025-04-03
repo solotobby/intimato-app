@@ -1,8 +1,8 @@
 <div>
     {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
     <center>
-        <h1 class="text-lg"> Create a Story </h1>
-
+        
+        <flux:heading size="xl">Create Story</flux:heading>
         @if (session()->has('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
@@ -11,9 +11,8 @@
 
     </center>
 
-    <hr>
 
-    <form wire:submit="post" class="max-w-md mx-auto flex flex-col gap-6  shadow-2l rounded-2xl p-4">
+    <form wire:submit="post" class="max-w-lg mx-auto flex flex-col gap-6  shadow-2l rounded-2xl p-4">
         <!-- Email Address -->
         <flux:input
             wire:model="where_it_happen"
@@ -32,6 +31,7 @@
             placeholder="18"
         />
         <flux:select  wire:model="gender" placeholder="Select Gender"  :label="__('Gender')" required>
+            <flux:select.option value="">Select Gender</flux:select.option>    
             <flux:select.option>Male</flux:select.option>
             <flux:select.option>Female</flux:select.option>
         </flux:select>
@@ -51,6 +51,7 @@
         </flux:fieldset>
 
         <flux:select  wire:model="category" placeholder="Select Category"  :label="__('Category')" required>
+            <flux:select.option value="">Select One</flux:select.option>
             <flux:select.option>Straight</flux:select.option>
             <flux:select.option>Bi-sexual</flux:select.option>
             
