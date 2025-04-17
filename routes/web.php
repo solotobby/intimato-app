@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPageController;
 use App\Livewire\Dashboard;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -8,10 +9,12 @@ use App\Livewire\Stories\CreateStory;
 use App\Livewire\Stories\StoryDetail;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
 
+
+Route::get('/', [LandingPageController::class, 'landingPage']);
+Route::get('/about', [LandingPageController::class, 'about']);
+Route::get('/terms', [LandingPageController::class, 'terms']);
+Route::get('/categories', [LandingPageController::class, 'categories']);
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
