@@ -124,10 +124,10 @@
     </div>
     <div class="row g-2">
         <div class="col-12">
-            <button href="#" class="btn btn-outline-light w-100">
+            <a href="{{ route('auth.google') }}" class="btn btn-outline-light w-100">
                 <img src="images//icons/google.png" alt="" class="icon" />
                 <span class="fw-medium">Continue with Google</span>
-            </button>
+            </a>
         </div>
         {{-- <div class="col-12">
             <button href="#" class="btn btn-outline-light w-100">

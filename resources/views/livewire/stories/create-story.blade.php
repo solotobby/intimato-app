@@ -146,22 +146,21 @@
                                 <form wire:submit="post">
                                     <div class="d-flex justify-content-center">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group mb-3">
                                                 <label for="exampleFormControlInputText1" class="form-label">Where it Happened</label>
                                                 <div class="form-control-wrap">
                                                     <input type="text" class="form-control"  wire:model="where_it_happen" id="exampleFormControlInputText1" placeholder="Input text placeholder">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group mb-3">
                                                 <label for="exampleFormControlInputText1" class="form-label">How old were you</label>
                                                 <div class="form-control-wrap">
                                                     <input type="text" class="form-control"   wire:model="age" id="exampleFormControlInputText1" placeholder="Input text placeholder">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInputText1" class="form-label">How old were you</label>
+                                            <div class="form-group mb-3">
+                                                <label for="exampleFormControlInputText1" class="form-label">Gender</label>
                                                 <div class="form-control-wrap">
-                                                   
                                                     <select wire:model="gender" class="form-control">
                                                         <option value="">Select One</option>
                                                         <option value="Male">Male</option>
@@ -169,8 +168,8 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInputText1" class="form-label">Category</label>
+                                            <div class="form-group mb-3">
+                                                <label for="exampleFormControlInputText1" class="form-label">Orientation</label>
                                                 <div class="form-control-wrap">
                                                    
                                                     <select wire:model="category" class="form-control">
@@ -180,8 +179,8 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInputText1" class="form-label">Rate your experience</label>
+                                            <div class="form-group mb-3">
+                                                <label for="exampleFormControlInputText1" class="form-label">What would you Rate the experience</label>
                                                 <div class="form-control-wrap">
                                                     <div class="star-rating">
                                                         <input type="radio" wire:model="rating" value="1"><i></i>
@@ -195,8 +194,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea8" class="form-label">Example textarea</label>
+                                            <div class="form-groupmb-3">
+                                                <label for="exampleFormControlTextarea8" class="form-label">How did it happen?</label>
                                                 <div class="form-control-wrap">
                                                     <textarea placeholder="Describe everything that happened and how you felt. Be detailed as much as you can" wire:model="story" class="form-control" id="exampleFormControlTextarea8" rows="3"></textarea>
                                                 </div>

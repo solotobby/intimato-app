@@ -54,7 +54,7 @@
                         </button>
                     </div>
                     <ul class="nk-menu-buttons flex-lg-row-reverse">
-                        <li><a href="{{route('register') }}" class="btn btn-primary">Start Writing</a></li>
+                        <li><a href="{{route('submit') }}" class="btn btn-primary">Submit Story</a></li>
                         <li><a class="link link-dark" href="{{route('login')}}">Login </a></li>
                     </ul><!-- .nk-menu-buttons -->
                 </nav><!-- .nk-header-menu -->

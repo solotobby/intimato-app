@@ -5,7 +5,7 @@
 <section class="section section-bottom-0 has-shape">
     <div class="nk-shape bg-shape-blur-a mt-8 start-50 top-0 translate-middle-x"></div>
     <div class="container">
-        <div class="section-head">
+        {{-- <div class="section-head">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-9 col-xl-8 col-xxl-7">
                     <h6 class="overline-title text-primary">Get started for free</h6>
@@ -13,8 +13,47 @@
                     <p class="lead">Give our AI a few descriptions and we'll automatically create blog articles, product descriptions and more for you within just few second.</p>
                 </div>
             </div>
-        </div><!-- .section-head -->
+        </div> --}}
+        <!-- .section-head -->
+
         <div class="section-content">
+            <div class="row g-gs">
+                @foreach ($posts as $item)
+                <div class="col-md-6 col-xl-4">
+                    <div class="card border-0 shadow-tiny rounded-4">
+                        <div class="card-body p-4">
+                            {{-- <a class="d-block" href="blog-single.html"><img class="rounded-4 w-100" src="images/blog/a.jpg" alt=""></a> --}}
+                            <a href="#" class="badge px-3 py-2 mt-4 mb-3 text-bg-primary-soft fw-normal rounded-pill">{{ $item->category}}</a>
+                            <h3><a href="{{ url('story/'.$item->_id) }}" class="link-dark line-clamp-2">{{$item->where_it_happen}}</a></h3>
+                            <div class="d-flex pt-4">
+                                <div class="media media-lg media-middle media-lg rounded-pill">
+                                    <em class="icon mx-0 ni ni-user"></em>
+                                    {{-- <img src="{{asset('assets/images/avatar/author/sm-d.jpg')}}" alt=""> --}}
+                                </div>
+                                <div class="media-info ms-3">
+                                    <h6 class="mb-1">Anonymous</h6>
+                                    <ul class="list list-row gx-1">
+                                        {{-- <li>
+                                            <div class="sub-text">Feb 10, 2023</div>
+                                        </li> --}}
+                                        <li><em class="icon mx-0 ni ni-eye"></em></li>
+                                        <li>
+                                            <div class="sub-text">2094</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .card -->
+                </div><!-- .col -->
+                @endforeach
+                
+                
+            </div><!-- .row -->
+        </div>
+
+
+        {{-- <div class="section-content">
             <div class="row text-center g-gs">
                 <div class="col-md-6 col-xl-4">
                     <div class="card rounded-4 border-0 shadow-tiny h-100">
@@ -119,10 +158,10 @@
                     </div>
                 </div><!-- .col -->
             </div><!-- .row -->
-        </div><!-- .section-content -->
+        </div><!-- .section-content --> --}}
     </div><!-- .container -->
 </section><!-- .section -->
-<section class="section has-mask">
+{{-- <section class="section has-mask">
     <div class="nk-mask bg-pattern-dot bg-blend-around mt-10p mb-3"></div>
     <div class="container">
         <div class="section-head">
@@ -171,15 +210,15 @@
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .section-content -->
-        {{-- <div class="section-actions text-center">
+        <div class="section-actions text-center">
             <ul class="btn-list btn-list-inline gx-gs gy-3">
                 <li><a href="#" class="btn btn-primary btn-lg"><span>Start free trial today</span></a></li>
                 <li><a href="#" class="btn btn-primary btn-soft btn-lg"><em class="icon ni ni-play"></em><span>See action in video</span></a></li>
             </ul>
-        </div><!-- .section-actions --> --}}
+        </div><!-- .section-actions -->
         
     </div><!-- .container -->
-</section><!-- .section -->
+</section><!-- .section -- --}}
 
 
 <section class="section section-bottom-0">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LandingPageController;
 use App\Livewire\Dashboard;
 use App\Livewire\Settings\Appearance;
@@ -15,9 +16,22 @@ Route::get('/', [LandingPageController::class, 'landingPage']);
 Route::get('/about', [LandingPageController::class, 'about']);
 Route::get('/terms', [LandingPageController::class, 'terms']);
 Route::get('/categories', [LandingPageController::class, 'categories']);
+Route::get('/submit', [LandingPageController::class, 'submitStory'])->name('submit');
+Route::post('/submit/story', [LandingPageController::class, 'storeStory'])->name('submit.story');
+Route::get('/story/{_id}', [LandingPageController::class, 'viewStory']);
+
+
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
+
+
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
+
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
