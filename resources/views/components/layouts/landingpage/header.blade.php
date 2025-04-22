@@ -40,10 +40,14 @@
                                 <span class="nk-menu-text">Featured Categories</span>
                             </a>
                         </li>
-                       
                         <li class="nk-menu-item">
                             <a href="{{ url('terms') }}" class="nk-menu-link">
                                 <span class="nk-menu-text">Terms of Use</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{{ url('privacy') }}" class="nk-menu-link">
+                                <span class="nk-menu-text">Privacy Policy</span>
                             </a>
                         </li>
                     </ul><!-- .nk-menu-list -->
@@ -67,8 +71,8 @@
             <div class="row justify-content-center text-center">
                 <div class="col-lg-11 col-xl-9 col-xxl-8">
                     <div class="nk-hero-content py-5 py-lg-6">
-                        <h1 class="title mb-3 mb-lg-4">Unlock the power of Copywriting AI and Create Content Faster</h1>
-                        <p class="lead px-md-8 px-lg-6 mb-4 mb-lg-5">AI Copywriting is revolutionizing the way content is created. AI can create content for blogs, articles, websites, social media and more.</p>
+                        <h1 class="title mb-3 mb-lg-4">What’s your secret? Discover stories you’ll never forget</h1>
+                        <p class="lead px-md-8 px-lg-6 mb-4 mb-lg-5">A private space to read and share intimate, anonymous bedroom moments.</p>
                         <ul class="btn-list btn-list-inline">
                             <li><a href="{{url('register')}}" class="btn btn-secondary btn-lg"><span>Start sharing your stories</span></a></li>
                         </ul>

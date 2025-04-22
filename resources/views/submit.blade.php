@@ -3,6 +3,8 @@
 @section('content')
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<!-- Include Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <style>
 .star-rating {
@@ -113,13 +115,28 @@
                         <div class="card border-0 shadow-sm rounded-4">
                             <div class="card-body">
                                 {{-- <h3 class="title fw-medium mb-4">Please feel free to contact us using form below</h3> --}}
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <form action="{{ route('submit.story') }}"  method="post">
                                     @csrf
                                     <div class="row g-4">
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <input type="text" name="title" class="form-control form-control-lg" placeholder="Title (Optional)">
+                                                    <input type="text" name="title" class="form-control form-control-lg" placeholder="Title (Optional)" value="{{ old('title') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +144,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Your Email Address(Option)">
+                                                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Your Email Address(Option)" value="{{ old('email') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -135,14 +152,14 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <input type="text" class="form-control"  name="where_it_happen" id="exampleFormControlInputText1" placeholder="Where it happened?" required>
+                                                    <input type="text" class="form-control" value="{{ old('where_it_happen') }}"  name="where_it_happen" id="exampleFormControlInputText1" placeholder="Where it happened?" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <input type="text" class="form-control"   name="age" id="exampleFormControlInputText1" placeholder="How old were you?" required>
+                                                    <input type="text" class="form-control"  value="{{ old('age') }}"  name="age" id="exampleFormControlInputText1" placeholder="How old were you?" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -153,9 +170,9 @@
                                                 <div class="form-control-wrap">
                                                     <select name="gender" class="form-control" required>
                                                         <option value="">What’s your Gender</option>
-                                                        <option value="Male">Male</option>
-                                                        <option value="Female">Female</option>
-                                                        <option value="Non-Binary">Non-Binary</option>
+                                                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                                                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                                                        <option value="Non-Binary" {{ old('gender') == 'Non-Binary' ? 'selected' : '' }}>Non-Binary</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -167,10 +184,74 @@
                                                 <div class="form-control-wrap">
                                                     <select name="category" class="form-control" required>
                                                         <option value="">Orientation</option>
-                                                        <option value="Straight">Straight</option>
-                                                        <option value="Gay">Gay</option>
-                                                        <option value="Bi-Sexual">Bi-Sexual</option>
+                                                        <option value="Straight" {{ old('category') == 'Straight' ? 'selected' : '' }}>Straight</option>
+                                                        <option value="Gay" {{ old('category') == 'Gay' ? 'selected' : '' }}>Gay</option>
+                                                        <option value="Bi-Sexual" {{ old('category') == 'Bi-Sexual' ? 'selected' : '' }}>Bi-Sexual</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="form-control-wrap">
+                                                    <label for="tags">Choose your tags:</label>
+                                                        <select id="tags" name="tags[]" multiple="multiple" class="form-control select2" style="width: 100%;">
+                                                            @php
+                                                                $oldTags = old('tags', []);
+                                                            @endphp
+
+                                                            @foreach ($tags as $item)
+                                                                <option value="{{ $item->id }}" {{ in_array($item->id, $oldTags) ? 'selected' : '' }}>
+                                                                    {{ $item->name }}
+                                                                </option>
+                                                            @endforeach
+
+
+                                                        
+                                                           
+
+                                                          
+                                                            
+                                                            {{-- <optgroup label="Mood / Emotion">
+                                                                <option>Romantic</option>
+                                                                <option>Passionate</option>
+                                                                <option>Sweet</option>
+                                                                <option>Awkward</option>
+                                                                <option>Emotional</option>
+                                                                <option>Vulnerable</option>
+                                                                <option>Forbidden</option>
+                                                                <option>Confessional</option>
+                                                            </optgroup>
+                                                            <optgroup label="Experience / Theme">
+                                                            <option>First Time</option>
+                                                            <option>One Night Stand</option>
+                                                            <option>Vacation Romance</option>
+                                                            <option>Breakup</option>
+                                                            <option>Fantasy Realized</option>
+                                                            <option>Public Place</option>
+                                                            <option>Reunion</option>
+                                                            <option>Drunk Night</option>
+                                                            </optgroup>
+                                                            <optgroup label="Relationship / Role">
+                                                            <option>Partner</option>
+                                                            <option>Ex</option>
+                                                            <option>Stranger</option>
+                                                            <option>Crush</option>
+                                                            <option>Roommate</option>
+                                                            <option>High School Love</option>
+                                                            <option>Online Match</option>
+                                                            <option>Neighbor</option>
+                                                            </optgroup>
+                                                            <optgroup label="Other">
+                                                            <option>LGBTQ+</option>
+                                                            <option>NSFW</option>
+                                                            <option>Complicated</option>
+                                                            <option>Still Thinking About It</option>
+                                                            <option>No Regrets</option>
+                                                            <option>Memory Lane</option> 
+                                                            </optgroup>--}}
+                                                        </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -179,11 +260,9 @@
                                                 <label for="exampleFormControlInputText1" class="form-label">What would you Rate the experience</label>
                                                 <div class="form-control-wrap">
                                                     <div class="star-rating">
-                                                        <input type="radio" name="rating" value="1"><i></i>
-                                                        <input type="radio" name="rating" value="2"><i></i>
-                                                        <input type="radio" name="rating" value="3"><i></i>
-                                                        <input type="radio" name="rating" value="4"><i></i>
-                                                        <input type="radio" name="rating" value="5"><i></i>
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                        <input type="radio" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}><i></i>
+                                                        @endfor
                                                     </div>
                                                     <div class="mt-3">
                                                         <span id="rating-value" class="h4">0</span> out of 5 stars
@@ -201,10 +280,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <label for="captcha">What is {{ session('question') ?? '5 + 2' }} = </label>
+                                             <input type="text" name="ans" required placeholder="Your answer">
+                                        </div>
                                         <!-- .col -->
                                         <div class="col-12">
                                             <div class="form-group mb-2" for="id-terms">
-                                                <input type="checkbox" name="terms" required id="id-terms"> Accept our terms and condition 
+                                                <input type="checkbox" name="terms" {{ old('terms') ? 'checked' : '' }} required id="id-terms"> Accept our terms and condition 
                                             </div>
 
                                             <div class="form-group">
@@ -223,7 +306,7 @@
         </div><!-- .section-content -->
     </div><!-- .container -->
 </section><!-- .section -->
-<section class="section section-bottom-0">
+{{-- <section class="section section-bottom-0">
     <div class="container">
         <div class="section-content">
             <div class="row g-gs justify-content-center">
@@ -269,7 +352,7 @@
             </div><!-- .row -->
         </div><!-- .section-content -->
     </div><!-- .container -->
-</section><!-- .section -->
+</section><!-- .section --> --}}
 <section class="section section-bottom-0">
     <div class="container">
         <div class="section-wrap bg-primary bg-opacity-10 rounded-4">
@@ -277,16 +360,16 @@
                 <div class="row justify-content-center text-center">
                     <div class="col-xl-8 col-xxl-9">
                         <div class="block-text">
-                            <h6 class="overline-title text-primary">Boost your writing productivity</h6>
-                            <h2 class="title">End writer’s block today</h2>
-                            <p class="lead mt-3">It’s like having access to a team of copywriting experts writing powerful copy for you in 1-click.</p>
+                            {{-- <h6 class="overline-title text-primary">Boost your writing productivity</h6> --}}
+                            <h2 class="title">You’re one click away from a story you won’t forget.</h2>
+                            <p class="lead mt-3">Real moments. Anonymous voices. Dive into the secrets that stay with us forever.</p>
                             <ul class="btn-list btn-list-inline">
-                                <li><a href="#" class="btn btn-lg btn-primary"><span>Start writing for free</span><em class="icon ni ni-arrow-long-right"></em></a></li>
+                                <li><a href="{{ url('/') }}" class="btn btn-lg btn-primary"><span>Start Reading </span><em class="icon ni ni-arrow-long-right"></em></a></li>
                             </ul>
                             <ul class="list list-row gy-0 gx-3">
-                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>No credit card required</span></li>
-                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>Cancel anytime</span></li>
-                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>10+ tools to expolore</span></li>
+                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>Read</span></li>
+                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>Write</span></li>
+                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>Connect</span></li>
                             </ul>
                         </div>
                     </div>
@@ -298,6 +381,11 @@
 
 
 
+<!-- Include jQuery and Select2 JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
 <script>
     const starRating = document.querySelector('.star-rating');
             const ratingValue = document.getElementById('rating-value');
@@ -305,7 +393,17 @@
             starRating.addEventListener('change', function(e) {
                 ratingValue.textContent = e.target.value;
             });
-    </script>
+</script>
+
+<!-- Initialize Select2 -->
+<script>
+  $(document).ready(function() {
+    $('.select2').select2({
+      placeholder: "Select tags that match your story",
+      allowClear: true
+    });
+  });
+</script>
 
 
 @endsection

@@ -37,6 +37,15 @@
                             <span class="nk-menu-text">Make a Post</span>
                         </a>
                     </li>
+
+                    <li class="nk-menu-item has-sub">
+                        <a href="{{route('show.plans')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-layers"></em>
+                            </span>
+                            <span class="nk-menu-text">Show Plans</span>
+                        </a>
+                    </li>
                     
                     
                     <li class="nk-menu-item has-sub">

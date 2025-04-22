@@ -59,7 +59,7 @@
 
                         @foreach ($list as $ls)
                             <div class="col-12 filter-item blog-content" data-category="blog-content">
-                                <a href="{{ url('story/'.$ls->_id) }}">
+                                <a href="{{ url('view/story/'.$ls->_id) }}">
                                 <div class="d-flex position-relative">
                                     {{-- <div class="d-inline-flex position-absolute end-0 top-0">
                                         <div class="badge text-bg-dark rounded-pill text-uppercase">New</div>

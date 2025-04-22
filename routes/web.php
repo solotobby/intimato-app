@@ -8,6 +8,7 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Stories\CreateStory;
 use App\Livewire\Stories\StoryDetail;
+use App\Livewire\Subscriptions\Showplans;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,10 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingPageController::class, 'landingPage']);
 Route::get('/about', [LandingPageController::class, 'about']);
 Route::get('/terms', [LandingPageController::class, 'terms']);
+Route::get('/privacy', [LandingPageController::class, 'privacy']);
 Route::get('/categories', [LandingPageController::class, 'categories']);
 Route::get('/submit', [LandingPageController::class, 'submitStory'])->name('submit');
 Route::post('/submit/story', [LandingPageController::class, 'storeStory'])->name('submit.story');
 Route::get('/story/{_id}', [LandingPageController::class, 'viewStory']);
+Route::get('/subscribe', [LandingPageController::class, 'subscribe'])->name('subscribe');
+
 
 
 Route::controller(GoogleController::class)->group(function(){
@@ -42,7 +46,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('dashboard', Dashboard::class)->name('dashboard');
     Route::get('create/story', CreateStory::class)->name('create.story');
-    Route::get('story/{id}', StoryDetail::class);
+    Route::get('view/story/{id}', StoryDetail::class);
+    Route::get('show/plans', Showplans::class)->name('show.plans');
 });
 
 

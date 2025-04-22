@@ -228,16 +228,16 @@
                 <div class="row justify-content-center text-center">
                     <div class="col-xl-8 col-xxl-9">
                         <div class="block-text">
-                            <h6 class="overline-title text-primary">Boost your writing productivity</h6>
-                            <h2 class="title">End writer’s block today</h2>
-                            <p class="lead mt-3">It’s like having access to a team of copywriting experts writing powerful copy for you in 1-click.</p>
+                            {{-- <h6 class="overline-title text-primary">Boost your writing productivity</h6> --}}
+                            <h2 class="title">Got a moment you can’t forget? Tell us.</h2>
+                            <p class="lead mt-3">Share your most intimate memory anonymously — and let someone out there feel a little less alone.</p>
                             <ul class="btn-list btn-list-inline">
-                                <li><a href="#" class="btn btn-lg btn-primary"><span>Start writing for free</span><em class="icon ni ni-arrow-long-right"></em></a></li>
+                                <li><a href="{{ url('submit')}}" class="btn btn-lg btn-primary"><span>Start writing for free</span><em class="icon ni ni-arrow-long-right"></em></a></li>
                             </ul>
                             <ul class="list list-row gy-0 gx-3">
-                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>No credit card required</span></li>
-                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>Cancel anytime</span></li>
-                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>10+ tools to expolore</span></li>
+                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>Read</span></li>
+                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>Write</span></li>
+                                <li><em class="icon ni ni-check-circle-fill text-success"></em><span>Connect</span></li>
                             </ul>
                         </div>
                     </div>
