@@ -51,7 +51,6 @@ class LandingPageController extends Controller
 
     public function  storeStory(Request $request) {
 
-        
         $request->validate([
             'title' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
@@ -73,8 +72,6 @@ class LandingPageController extends Controller
             return back()->with('error', 'Oops! CAPTCHA answer is incorrect.')->withInput();
        }
 
-     
-
        $posted = Post::create([
             'user_id' => 1,
             '_id' => rand(999,99999),
@@ -87,11 +84,6 @@ class LandingPageController extends Controller
         ]);
 
         if($posted){
-
-                        
-            // if ($request->has('tags')) {
-            //     $posted->tags()->sync($request->tags); // Tags should be an array of tag IDs
-            // }
 
             foreach($request->tags as $tag){
                 PostTag::create(['tag_id' =>$tag, 'post_id' => $posted->id ]);

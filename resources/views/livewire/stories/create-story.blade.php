@@ -66,6 +66,9 @@
     </form> --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
+    <!-- Include Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <style>
 .star-rating {
         font-size: 0;
@@ -146,18 +149,28 @@
                                 <form wire:submit="post">
                                     <div class="d-flex justify-content-center">
                                         <div class="col-md-6">
+
+                                            <div class="form-group mb-3">
+                                                <label for="exampleFormControlInputText1" class="form-label">Title(Optional)</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" class="form-control"  wire:model="title" id="exampleFormControlInputText1" placeholder="Enter Title (Optional) ">
+                                                </div>
+                                            </div>
+                                           
                                             <div class="form-group mb-3">
                                                 <label for="exampleFormControlInputText1" class="form-label">Where it Happened</label>
                                                 <div class="form-control-wrap">
-                                                    <input type="text" class="form-control"  wire:model="where_it_happen" id="exampleFormControlInputText1" placeholder="Input text placeholder">
+                                                    <input type="text" class="form-control"  wire:model="where_it_happen" id="exampleFormControlInputText1" placeholder="Where did it happen">
                                                 </div>
                                             </div>
+
                                             <div class="form-group mb-3">
                                                 <label for="exampleFormControlInputText1" class="form-label">How old were you</label>
                                                 <div class="form-control-wrap">
-                                                    <input type="text" class="form-control"   wire:model="age" id="exampleFormControlInputText1" placeholder="Input text placeholder">
+                                                    <input type="text" class="form-control"   wire:model="age" id="exampleFormControlInputText1" placeholder="How old were you">
                                                 </div>
                                             </div>
+
                                             <div class="form-group mb-3">
                                                 <label for="exampleFormControlInputText1" class="form-label">Gender</label>
                                                 <div class="form-control-wrap">
@@ -168,21 +181,43 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="form-group mb-3">
                                                 <label for="exampleFormControlInputText1" class="form-label">Orientation</label>
                                                 <div class="form-control-wrap">
-                                                   
                                                     <select wire:model="category" class="form-control">
                                                         <option value="">Select One</option>
                                                         <option value="Straight">Straight</option>
+                                                        <option value="Gay">Gay</option>
                                                         <option value="Bi-Sexual">Bi-Sexual</option>
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group mb-3">
+                                                <label for="exampleFormControlInputText1" class="form-label">Choose your tags</label>
+                                                <div class="form-control-wrap">
+                                                    <select wire:model="tags" id="tags" multiple="multiple" class="form-control select2">
+                                                        <option value="">Select One</option>
+                                                            @foreach($tagList as $tag)
+                                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                            @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+
+                                         
+                                            
+
                                             <div class="form-group mb-3">
                                                 <label for="exampleFormControlInputText1" class="form-label">What would you Rate the experience</label>
                                                 <div class="form-control-wrap">
                                                     <div class="star-rating">
+                                                        {{-- @for($i = 1; $i <= 5; $i++)
+                                                        <input type="radio" wire:model="rating" value="1"><i></i>
+                                                        <input type="radio" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}><i></i>
+                                                        @endfor --}}
                                                         <input type="radio" wire:model="rating" value="1"><i></i>
                                                         <input type="radio" wire:model="rating" value="2"><i></i>
                                                         <input type="radio" wire:model="rating" value="3"><i></i>
@@ -287,6 +322,10 @@
         </div>
     </div>
 
+<!-- Include jQuery and Select2 JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
 const starRating = document.querySelector('.star-rating');
         const ratingValue = document.getElementById('rating-value');
@@ -295,5 +334,20 @@ const starRating = document.querySelector('.star-rating');
             ratingValue.textContent = e.target.value;
         });
 </script>
+
+<!-- Initialize Select2 -->
+<script>
+    
+    $(document).ready(function() {
+      $('.select2').select2({
+        placeholder: "Select tags that match your story",
+        allowClear: true
+      });
+    });
+
+    
+</script>
+
+
 
 </div>

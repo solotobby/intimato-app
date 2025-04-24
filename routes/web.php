@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PayPalController;
 use App\Livewire\Dashboard;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -48,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('create/story', CreateStory::class)->name('create.story');
     Route::get('view/story/{id}', StoryDetail::class);
     Route::get('show/plans', Showplans::class)->name('show.plans');
+
+    //paypal subscription routes
+    Route::get('cancel/process', [PayPalController::class, 'cancelProcess'])->name('cancel.process');
+    Route::get('validate/subscription', [PayPalController::class, 'validateSubscription'])->name('validate.payment');
 });
 
 
