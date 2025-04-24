@@ -47,7 +47,7 @@
                         <div class="nk-block-head-between">
                             <div class="nk-block-head-content">
                                 <h2 class="display-6">{{$post->where_it_happen}}s</h2>
-                                <p>Posted by - {{$post->user->name}} @ {{$post->created_at}} </p>
+                                <p>Posted by - {{$post->user->name}} </p>
                             </div>
                         </div>
                     </div><!-- .nk-page-head -->
@@ -120,7 +120,7 @@
                                                     </div>
                                                     <p class="text-dark" id="SocialMediaPost01"> {{ $comment->message }} </p>
                                                     <div class="d-flex justify-content-between align-items-center fs-11px text-light">
-                                                        <span>{{ $comment->created_at }}</span>
+                                                        <span>{{ $comment->created_at->diffForHumans() }}</span>
                                                         {{-- <span>42 Words</span> --}}
                                                     </div>
                                                 </div>

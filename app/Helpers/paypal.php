@@ -58,7 +58,6 @@ if (! function_exists('getAccessToken')) {
 if (! function_exists('showPlanDetails')) {
     function showPlanDetails($planId){
 
-
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
         ])->withBasicAuth(env('PAYPAL_CLIENT_ID'), env('PAYPAL_CLIENT_SECRET'))
@@ -104,6 +103,21 @@ if (! function_exists('createSubscription')) {
 
          return json_decode($response->getBody()->getContents(), true);
 
+
+    }
+}
+
+
+if (! function_exists('getSubscription')) {
+    function getSubscription($subscriptionId){
+        $accessToken = getAccessToken();
+        
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+        ])->withBasicAuth(env('PAYPAL_CLIENT_ID'), env('PAYPAL_CLIENT_SECRET'))
+        ->get(env('PAYPAL_URL').'billing/subscriptions/'.$subscriptionId)->throw(); //billing/plans/{id}
+
+         return json_decode($response->getBody()->getContents(), true);
 
     }
 }

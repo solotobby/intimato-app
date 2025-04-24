@@ -42,7 +42,7 @@ class CreateStory extends Component
         //     // 'terms' => 'accepted',
         // ]);
 
-        dd($this->tags);
+       
         $posted = Post::create([
             'user_id' => auth()->user()->id,
             '_id' => rand(999,99999),

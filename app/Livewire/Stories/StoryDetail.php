@@ -3,6 +3,7 @@
 namespace App\Livewire\Stories;
 
 use App\Models\Post;
+use App\Models\PostRead;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -12,11 +13,38 @@ class StoryDetail extends Component
     public $message;
     public $post;
 
-    public function mount(){
+    public function mount(){ 
+        $user = Auth::user();
         $_id = $this->id;
         $this->post = Post::where('_id', $_id)->first();
         $this->post->views += 1;
         $this->post->save();
+
+        if($user->id == $this->post->user_id){
+            //allow unlimited read with recording, if user is the creator of the post
+            return;
+        }
+
+        $check = PostRead::query();
+        $checkExist = $check->where('post_id', $this->post->id)->where('user_id', $user->id)->exists();
+
+        if(!$checkExist){
+            //record new read
+            PostRead::create(['post_id' => $this->post->id, 'user_id' => auth()->user()->id]);
+        }
+        
+          
+    
+        $checkCount = PostRead::where('user_id', $user->id)->count();
+        
+        if($user->activeSubscription()['is_subscribed'] == false){
+            if($checkCount >= 2){
+                return redirect()->route('show.plans');
+            }
+        }
+
+        
+ 
     }
 
     public function like(){
@@ -72,8 +100,8 @@ class StoryDetail extends Component
     public function render()
     {
         
-        $_id = $this->id;
-        $post = Post::where('_id', $_id)->first();
+        // $_id = $this->id;
+        // $post = Post::where('_id', $_id)->first();
         // $post->views += 1;
         // $post->save();
         // ['post' => $post]
