@@ -55,7 +55,7 @@
                         {{-- <div class="nk-block-head nk-block-head-sm">
                             <div class="nk-block-head-content">
                                 <h3 class="nk-block-title">Custom Cards</h3>
-                                <p>Pre-built cards for copygen.</p>
+                                
                             </div>
                         </div> --}}
 
@@ -65,18 +65,19 @@
                                     <div class="col-md-12 col-xxl-12">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="media media-xs media-middle media-circle text-primary bg-primary bg-opacity-20">
-                                                            <em class="icon ni ni-pen-fill"></em>
-                                                        </div>
-                                                        <h5 class="fs-14px fw-normal ms-2">Post category</h5>
-                                                    </div>
-                                                    {{-- <button class="js-copy" data-clipboard-target="#SocialMediaPost04"></button> --}}
-                                                </div>
-                                                <p class="lead text-base" id="SocialMediaPost04"> 
-                                                    {!! nl2br(e($post->story)) !!}
-                                                </p>
+                                            
+                                                <span class="lead text-base" id="SocialMediaPost04"> 
+                                                    <ul class="list gy-3 pe-xxl-7">
+                                                        <li><em class="icon text-success fs-5 ni ni-check-circle-fill"></em><span>Age when it Happened: {{ $post->age }}</span></li>
+                                                        <li><em class="icon text-success fs-5 ni ni-check-circle-fill"></em><span>Gender: {{ $post->gender }}</span></li>
+                                                        <li><em class="icon text-success fs-5 ni ni-check-circle-fill"></em><span>Rating: {{ $post->rating }}/5</span></li>
+                                                        <li><em class="icon text-success fs-5 ni ni-check-circle-fill"></em><span>Category: {{ $post->category }}</span></li>
+                                                    </ul>
+                                                    <hr>
+
+                                                    
+                                                    {!! $post->story !!} 
+                                                </span>
                                                 <ul class="nk-timeline-meta">
                                                    
                                                     <li>
@@ -112,7 +113,7 @@
                                             <div class="card bg-primary-soft border-0 shadow-none">
                                                 <div class="card-body">
                                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                                        <div class="badge bg-primary bg-opacity-10 text-primary rounded-pill"><em class="icon ni ni-pen-fill"></em><span>{{$comment->user->name}}</span></div>
+                                                        <div class="badge bg-primary bg-opacity-10 text-primary rounded-pill"><em class="icon ni ni-user"></em><span>{{$comment->user->name}}</span></div>
                                                         {{-- <ul class="d-flex align-items-center gap gx-1">
                                                             <li><button class="btn btn-sm btn-icon btn-zoom"><em class="icon ni ni-chevrons-left"></em></button></li>
                                                             <li><button class="js-copy has-tooltip" data-clipboard-target="#SocialMediaPost01"></button></li>

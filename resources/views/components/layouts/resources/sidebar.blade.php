@@ -9,9 +9,13 @@
         <div class="nk-sidebar-brand">
             <a href="{{url('dashboard')}}" class="logo-link">
                 <div class="logo-wrap">
-                    <img class="logo-img logo-light" src="{{asset('images/logo.png')}}" srcset="{{asset('images/logo2x.png 2x')}}" alt="">
+                    <span style="font-size: x-large; color: black; display: inline-flex; align-items: center; gap: 4px;">
+                        <strong>Intimato</strong>
+                        <i class="off icon ni ni-heart"></i>
+                    </span>
+                    {{-- <img class="logo-img logo-light" src="{{asset('images/logo.png')}}" srcset="{{asset('images/logo2x.png 2x')}}" alt="">
                     <img class="logo-img logo-dark" src="{{asset('images/logo-dark.png')}}" srcset="{{asset('images/logo-dark2x.png 2x')}}" alt="">
-                    <img class="logo-img logo-icon" src="{{asset('images/logo-icon.png')}}" srcset="{{asset('images/logo-icon2x.png 2x')}}" alt="">
+                    <img class="logo-img logo-icon" src="{{asset('images/logo-icon.png')}}" srcset="{{asset('images/logo-icon2x.png 2x')}}" alt=""> --}}
                 </div>
             </a>
         </div><!-- end nk-sidebar-brand -->
@@ -312,10 +316,10 @@
                     </div>
                     <h6 class="lead-text mt-2">1,360 <span class="text-light">words left</span></h6>
                 </div> --}}
-                <a class="d-flex px-3 py-2 bg-primary bg-opacity-10 rounded-bottom-3" href="{{url('settings')}}">
+                <a class="d-flex px-3 py-2 bg-primary bg-opacity-10 rounded-bottom-3" href="{{url('dashboard')}}">
                     <div class="media-group">
                         <div class="media media-sm media-middle media-circle text-bg-primary">
-                            <img src="images/avatar/a.png" />
+                            <em class="off icon ni ni-user"></em>
                         </div>
                         <div class="media-text">
                             <h6 class="fs-6 mb-0">{{ auth()->user()->name }}</h6>

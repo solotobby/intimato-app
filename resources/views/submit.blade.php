@@ -3,8 +3,11 @@
 @section('content')
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 <!-- Include Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 
 <style>
 .star-rating {
@@ -191,7 +194,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+{{--
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
@@ -213,7 +216,7 @@
 
                                                           
                                                             
-                                                            {{-- <optgroup label="Mood / Emotion">
+                                                             <optgroup label="Mood / Emotion">
                                                                 <option>Romantic</option>
                                                                 <option>Passionate</option>
                                                                 <option>Sweet</option>
@@ -250,11 +253,11 @@
                                                             <option>Still Thinking About It</option>
                                                             <option>No Regrets</option>
                                                             <option>Memory Lane</option> 
-                                                            </optgroup>--}}
+                                                            </optgroup>
                                                         </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>--}}
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="exampleFormControlInputText1" class="form-label">What would you Rate the experience</label>
@@ -276,7 +279,13 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <textarea name="story" class="form-control form-control-lg" placeholder="Describe everything that happened and how you felt. Be detailed as much as you can" required></textarea>
+                                                    <!-- Visible CKEditor element -->
+                                                    <div id="editor">{!! old('story') !!}</div>
+
+                                                    <!-- Hidden field that will carry the data -->
+                                                    <input type="hidden" name="story" id="story-content">
+
+                                                    {{-- <textarea name="story" id="editor" class="form-control form-control-lg" rows="10" placeholder="Describe everything that happened and how you felt. Be detailed as much as you can" required>{{ old('story') }}</textarea> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -291,13 +300,16 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <button class="btn btn-primary" type="submit" id="submit-btn">Send Message</button>
+                                                <button class="btn btn-primary" type="submit" id="submit-btn">Submit Story</button>
                                             </div>
                                             <div class="form-result mt-4"></div>
                                         </div>
                                     </div>
                                     <!-- .row -->
                                 </form>
+
+                                
+
                             </div>
                         </div>
                     </div>
@@ -306,6 +318,9 @@
         </div><!-- .section-content -->
     </div><!-- .container -->
 </section><!-- .section -->
+
+
+
 {{-- <section class="section section-bottom-0">
     <div class="container">
         <div class="section-content">
@@ -404,6 +419,26 @@
     });
   });
 </script>
+<script>
+    let editorInstance;
+
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            editorInstance = editor;
+
+            // On submit, copy editor data to hidden input
+            document.querySelector('form').addEventListener('submit', function () {
+                const content = editorInstance.getData();
+                document.querySelector('#story-content').value = content;
+            });
+        })
+        .catch(error => {
+            console.error('CKEditor error:', error);
+        });
+</script>
+
+
 
 
 @endsection

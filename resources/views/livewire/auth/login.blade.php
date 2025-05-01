@@ -54,7 +54,7 @@
                               
                                 <div class="nk-block-head text-center mb-4 pb-2">
                                     <div class="nk-block-head-content">
-                                        <h1 class="nk-block-title mb-1">Log into Your Account</h1>
+                                        <h3 class="nk-block-title mb-1">Log into Your Account</h3>
                                         <p class="small">Sign in to your account to customize your content generation settings and view your history.</p>
                                     </div>
                                 </div>

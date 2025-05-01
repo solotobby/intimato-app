@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('discount_plan_id')->nullable();
             $table->string('interval');
             $table->text('parameter')->nullable();
+            $table->boolean('is_dicount')->default(true);
             $table->timestamps();
         });
     }

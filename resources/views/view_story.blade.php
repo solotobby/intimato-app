@@ -17,7 +17,8 @@
                             </li> --}}
                             <li><em class="icon mx-0 ni ni-eye"></em></li>
                             <li>
-                                <div class="sub-text fs-5">{{ $post->views }} - {{ session('readCount') }}</div>
+                                <div class="sub-text fs-5">{{ $post->views }} </div>
+                                {{-- - {{ session('readCount') }} --}}
                             </li>
                         </ul>
                         <div class="my-5">

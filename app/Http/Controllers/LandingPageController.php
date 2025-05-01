@@ -58,8 +58,8 @@ class LandingPageController extends Controller
             'age' => 'required|numeric|min:10|max:100',
             'gender' => 'required|in:Male,Female,Non-Binary',
             'category' => 'required|in:Straight,Gay,Bi-Sexual',
-            'tags' => 'required|array|min:1',
-            'tags.*' => 'string|max:50',
+            // 'tags' => 'required|array|min:1',
+            // 'tags.*' => 'string|max:50',
             'rating' => 'required|in:1,2,3,4,5',
             'story' => 'required|string|min:10',
             'ans' => 'required|numeric',
@@ -83,14 +83,15 @@ class LandingPageController extends Controller
             'story' => $request->story
         ]);
 
-        if($posted){
+        // if($posted){
 
-            foreach($request->tags as $tag){
-                PostTag::create(['tag_id' =>$tag, 'post_id' => $posted->id ]);
-            }
+        //     foreach($request->tags as $tag){
+        //         PostTag::create(['tag_id' =>$tag, 'post_id' => $posted->id ]);
+        //     }
 
-            return back()->with('success', 'Your story was submitted successfully!');
-        }
+           
+        // }
+        return back()->with('success', 'Your story was submitted successfully!');
 
     }
 
@@ -128,7 +129,7 @@ class LandingPageController extends Controller
   
          
         // Redirect if more than 5 stories read
-            if (count($views['stories_read']) >= 3) {
+            if (count($views['stories_read']) >= 30) {
                 return redirect()->route('subscribe');
             }
          

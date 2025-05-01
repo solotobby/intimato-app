@@ -40,13 +40,21 @@
             <div class="nk-wrap has-shape flex-column">
                 <div class="nk-shape bg-shape-blur-a start-0 top-0"></div>
                 <div class="nk-shape bg-shape-blur-b end-0 bottom-0"></div>
+              
                 <div class="text-center pt-5">
+
                     <a href="{{url('/')}}" class="logo-link">
-                        <div class="logo-wrap">
-                            <img class="logo-img logo-light" src="{{asset('images/logo.png')}}" srcset="{{asset('images/logo2x.png 2x')}}" alt="">
+                        <span style="font-size: xx-large; color: black; display: inline-flex; align-items: center; gap: 4px;">
+                            <strong>Intimato</strong>
+                            <i class="off icon ni ni-heart"></i>
+                        </span>
+                        
+                        {{-- <div class="logo-wrap">    
+                            {{-- <strong style="font-size: xx-large">Intimato <span class="off icon ni ni-heart"></span></strong> --}}
+                            {{-- <img class="logo-img logo-light" src="{{asset('images/logo.png')}}" srcset="{{asset('images/logo2x.png 2x')}}" alt="">
                             <img class="logo-img logo-dark" src="{{asset('images/logo-dark.png')}}" srcset="{{asset('images/logo-dark2x.png 2x')}}" alt="">
-                            <img class="logo-img logo-icon" src="{{asset('images/logo-icon.png')}}" srcset="{{asset('images/logo-icon2x.png 2x')}}" alt="">
-                        </div>
+                            <img class="logo-img logo-icon" src="{{asset('images/logo-icon.png')}}" srcset="{{asset('images/logo-icon2x.png 2x')}}" alt=""> --
+                        </div> --}}
                     </a>
                 </div>
                 <div class="container p-2 p-sm-4 mt-auto">

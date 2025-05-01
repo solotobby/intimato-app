@@ -25,6 +25,7 @@ return new class extends Migration
             $table->bigInteger('views')->default(0);
             $table->bigInteger('likes')->default(0);
             $table->bigInteger('comments')->default(0);
+            $table->boolean('is_premium')->default(false);
             $table->timestamps();
         });
     }

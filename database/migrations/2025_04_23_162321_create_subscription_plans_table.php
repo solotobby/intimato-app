@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('plan_id')->constrained()->onDelete('cascade');
-            $table->string('paypal_subscription_id');
+            $table->string('paypal_subscription_id')->unique();
             $table->string('status');
             $table->string('channel');
             $table->string('starts_at');

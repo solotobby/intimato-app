@@ -69,6 +69,8 @@
     <!-- Include Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
     <style>
 .star-rating {
         font-size: 0;
@@ -194,7 +196,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group mb-3">
+                                            {{-- <div class="form-group mb-3">
                                                 <label for="exampleFormControlInputText1" class="form-label">Choose your tags</label>
                                                 <div class="form-control-wrap">
                                                     <select wire:model="tags" id="tags" multiple="multiple" class="form-control select2">
@@ -205,7 +207,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+                                             --}}
 
                                          
                                             
@@ -232,7 +234,11 @@
                                             <div class="form-groupmb-3">
                                                 <label for="exampleFormControlTextarea8" class="form-label">How did it happen?</label>
                                                 <div class="form-control-wrap">
-                                                    <textarea placeholder="Describe everything that happened and how you felt. Be detailed as much as you can" wire:model="story" class="form-control" id="exampleFormControlTextarea8" rows="3"></textarea>
+                                                    <div wire:ignore>
+                                                        <div id="editor">  </div>
+                                                    </div>
+
+                                                    {{-- <textarea placeholder="Describe everything that happened and how you felt. Be detailed as much as you can" wire:model="story" class="form-control" id="exampleFormControlTextarea8" rows="3"></textarea> --}}
                                                 </div>
                                             </div>
 
@@ -337,17 +343,40 @@ const starRating = document.querySelector('.star-rating');
 
 <!-- Initialize Select2 -->
 <script>
-    
     $(document).ready(function() {
       $('.select2').select2({
         placeholder: "Select tags that match your story",
         allowClear: true
       });
     });
-
-    
 </script>
 
+<script>
+    let editor;
+
+    function initEditor() {
+        if (editor) return; // Prevent multiple inits
+
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(e => {
+                editor = e;
+
+                editor.model.document.on('change:data', () => {
+                    Livewire.find('@this.__instance.id').set('story', editor.getData());
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    // Init once Livewire is ready
+    document.addEventListener('livewire:load', initEditor);
+
+    // Re-init after Livewire updates the DOM
+    Livewire.hook('message.processed', initEditor);
+</script>
 
 
 </div>
