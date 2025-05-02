@@ -50,10 +50,10 @@
                 </div><!-- .nk-page-head -->
                 <div class="nk-block">
                     <ul class="filter-button-group mb-5">
-                        <li><button class="filter-button active" type="button" data-filter="*"> All </button></li>
+                        {{--<li><button class="filter-button active" type="button" data-filter="*"> All </button></li>
                         <li><button class="filter-button" type="button" data-filter=".blog-content"> Blog Content </button></li>
                         <li><button class="filter-button" type="button" data-filter=".social-media"> Social Media </button></li>
-                        <li><button class="filter-button" type="button" data-filter=".website-copy-seo"> Website Copy &amp; SEO </button></li>
+                        <li><button class="filter-button" type="button" data-filter=".website-copy-seo"> Website Copy &amp; SEO </button></li> --}}
                     </ul>
                     <div class="row g-gs filter-container">
 
@@ -69,7 +69,12 @@
                                     </div>
                                     <div class="ms-4 pb-gs border-bottom border-light flex-grow-1">
                                         <h5 class="fs-4 fw-medium">{{$ls->where_it_happen}}</h5>
-                                        <p class="small text-light line-clamp-2">{!! \Illuminate\Support\Str::words($ls->story, 35) !!}</p>
+
+                                        <p class="small text-light line-clamp-2">
+                                            {!! \Illuminate\Support\Str::words($ls->story, 35) !!}
+                                           {{-- <span style="color: black"> {!! \Illuminate\Support\Str::words($ls->story, 35) !!}</span> --}}
+                                        </p>
+
                                     </div>
                                 </div>
                                 </a>

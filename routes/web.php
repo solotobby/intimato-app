@@ -3,6 +3,9 @@
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\PostController;
+use App\Livewire\Admin\AdminDashboard;
+use App\Livewire\Admin\Subscription;
 use App\Livewire\Dashboard;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -46,13 +49,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 
     Route::get('dashboard', Dashboard::class)->name('dashboard');
-    Route::get('create/story', CreateStory::class)->name('create.story');
+    // Route::get('create/story', CreateStory::class)->name('create.story');
     Route::get('view/story/{id}', StoryDetail::class);
     Route::get('show/plans', Showplans::class)->name('show.plans');
 
     //paypal subscription routes
     Route::get('cancel/process', [PayPalController::class, 'cancelProcess'])->name('cancel.process');
     Route::get('validate/subscription', [PayPalController::class, 'validateSubscription'])->name('validate.payment');
+
+    Route::get('create/post', [PostController::class, 'createPost'])->name('create.story');
+    Route::post('store/post', [PostController::class, 'storePost'])->name('store.post');
+
+    // Admin Routes
+    Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
+    Route::get('subscription/list', Subscription::class)->name('admin.subscription');
+
 });
 
 

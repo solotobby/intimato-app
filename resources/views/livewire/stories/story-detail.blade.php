@@ -74,9 +74,8 @@
                                                         <li><em class="icon text-success fs-5 ni ni-check-circle-fill"></em><span>Category: {{ $post->category }}</span></li>
                                                     </ul>
                                                     <hr>
-
-                                                    
                                                     {!! $post->story !!} 
+                                                    <br>
                                                 </span>
                                                 <ul class="nk-timeline-meta">
                                                    

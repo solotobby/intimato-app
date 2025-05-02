@@ -50,7 +50,26 @@
                             <span class="nk-menu-text">Show Plans</span>
                         </a>
                     </li>
-                    
+                   
+                    @if(auth()->user()->role == 'admin')
+                    <hr>
+                        <li class="nk-menu-item has-sub">
+                            <a href="{{route('admin.dashboard')}}" class="nk-menu-link">
+                                <span class="nk-menu-icon">
+                                    <em class="icon ni ni-dashboard"></em>
+                                </span>
+                                <span class="nk-menu-text">Admin Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item has-sub">
+                            <a href="{{route('admin.subscription')}}" class="nk-menu-link">
+                                <span class="nk-menu-icon">
+                                    <em class="icon ni ni-list"></em>
+                                </span>
+                                <span class="nk-menu-text">Subscription Mgt.</span>
+                            </a>
+                        </li>
+                    @endif
                     
                     <li class="nk-menu-item has-sub">
                         <a href="{{ route('logout') }}"

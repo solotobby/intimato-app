@@ -40,14 +40,18 @@
                                                     <h2 class="mb-3">{{$plan->name}}</h2>
                                                     <div class="pricing-price-wrap">
                                                         <div class="pricing-price">
-                                                            <h3 class="display-1 mb-3 fw-semibold">£{{$plan->discount_amount}}</h3>
+                                                            <h3 class="h2 mb-2">£{{$plan->discount_amount}} <span class="caption-text text-muted"> formally <span class="text-decoration-line-through">£60 </span></span></h3>
+                                                            {{-- <h3 class="display-1 mb-3 fw-semibold">£{{$plan->discount_amount}}</h3> <span class="caption-text text-muted"> formally <span class="text-decoration-line-through">£60 </span></span> --}}
                                                         </div>
                                                     </div>
+
+                                                 
+
                                                     <div class="mb-2">
                                                         @if(@$activeSubscription['plan_id'] == $plan->id)
                                                             <button href="#" class="btn {{ $plan->name == 'Bi-Annual' ? 'btn-primary' : 'btn-outline-light' }} w-100" disabled>Active Subscription</button>
                                                         @else
-                                                            <a href="#" wire:click="makeSubscription({{ $plan->id }})" class="btn {{ $plan->name == 'Bi-Annual' ? 'btn-primary' : 'btn-outline-light' }} w-100">Upgrade Now</a>
+                                                            <a href="" wire:click="makeSubscription({{ $plan->id }})" class="btn {{ $plan->name == 'Bi-Annual' ? 'btn-primary' : 'btn-outline-light' }} w-100">Upgrade Now</a>
                                                         @endif
                                                         <div class="d-flex align-items-center justify-content-center text-center text-light fs-12px lh-lg fst-italic mt-1">
                                                             <svg width="13" height="13" viewBox="0 0 13 13" class="text-danger" fill="none" xmlns="http://www.w3.org/2000/svg">

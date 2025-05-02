@@ -194,7 +194,7 @@
                                                 </div>
                                             </div>
                                         </div>
-{{--
+
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
@@ -216,7 +216,7 @@
 
                                                           
                                                             
-                                                             <optgroup label="Mood / Emotion">
+                                                             {{-- <optgroup label="Mood / Emotion">
                                                                 <option>Romantic</option>
                                                                 <option>Passionate</option>
                                                                 <option>Sweet</option>
@@ -253,11 +253,13 @@
                                                             <option>Still Thinking About It</option>
                                                             <option>No Regrets</option>
                                                             <option>Memory Lane</option> 
-                                                            </optgroup>
+                                                            </optgroup> --}}
+                                                            
                                                         </select>
                                                 </div>
                                             </div>
-                                        </div>--}}
+                                        </div>
+
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="exampleFormControlInputText1" class="form-label">What would you Rate the experience</label>

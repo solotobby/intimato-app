@@ -83,14 +83,14 @@ class LandingPageController extends Controller
             'story' => $request->story
         ]);
 
-        // if($posted){
+        if($posted){
 
-        //     foreach($request->tags as $tag){
-        //         PostTag::create(['tag_id' =>$tag, 'post_id' => $posted->id ]);
-        //     }
+            foreach($request->tags as $tag){
+                PostTag::create(['tag_id' =>$tag, 'post_id' => $posted->id ]);
+            }
 
            
-        // }
+        }
         return back()->with('success', 'Your story was submitted successfully!');
 
     }
