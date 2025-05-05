@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
@@ -182,8 +183,11 @@ if (! function_exists('createSubscription')) {
        $accessToken = getAccessToken();
 
         $user = Auth::user();
+        $startTime = Carbon::now()->addMinutes(2)->toIso8601String();
+        
         $payload = [
             'plan_id' => $planId,
+            'start_time' => $startTime,
             'subscriber' => [
                 'name' => [
                     'given_name' => $user->name, //$subscriberDetails['first_name'],

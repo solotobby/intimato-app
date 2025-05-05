@@ -82,42 +82,141 @@
                 </div>
             </div>
         </div><!-- .section-head -->
-        <div class="section-content">
-            <div class="row g-gs justify-content-center justify-content-lg-between">
-                {{-- <div class="col-xl-5 col-lg-6 col-md-8 text-lg-start text-center">
-                    <div class="block-text pt-lg-4">
-                        <h3 class="title h2">Let's talk</h3>
-                        <p>Must explain to you how all this mistaken idea of denouncing pleasure and praising born and I will give you a complete account of the system.</p>
-                        <ul class="row gy-4 pt-4">
-                            <li class="col-12">
-                                <h5>Contact</h5>
-                                <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-start">
-                                    <em class="icon text-base fs-5 mb-2 mb-lg-0 me-lg-2 ni ni-call-alt-fill"></em>
-                                    <span>+(642) 342 762 44</span>
+
+     
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-sm rounded-4">
+                        <div class="card-body">
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+        
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="col-12">
-                                <h5>Email</h5>
-                                <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-start">
-                                    <em class="icon text-base fs-5 mb-2 mb-lg-0 me-lg-2 ni ni-mail-fill"></em>
-                                    <span>support@copygen.com</span>
+                            @endif
+        
+                            <form action="{{ route('submit.story') }}" method="POST">
+                                @csrf
+                                <div class="row g-4">
+                                    <!-- Title -->
+                                    <div class="col-12">
+                                        <input type="text" name="title" class="form-control form-control-lg" placeholder="Title (Optional)" value="{{ old('title') }}">
+                                    </div>
+        
+                                    <!-- Email -->
+                                    <div class="col-12">
+                                        <input type="email" name="email" class="form-control form-control-lg" placeholder="Your Email Address (Optional)" value="{{ old('email') }}">
+                                    </div>
+        
+                                    <!-- Where it happened -->
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="where_it_happen" value="{{ old('where_it_happen') }}" placeholder="Where it happened?" required>
+                                    </div>
+        
+                                    <!-- Age -->
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="age" value="{{ old('age') }}" placeholder="How old were you?" required>
+                                    </div>
+        
+                                    <!-- Gender -->
+                                    <div class="col-md-6">
+                                        <select name="gender" class="form-control" required>
+                                            <option value="">What’s your Gender</option>
+                                            <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                                            <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                                            <option value="Non-Binary" {{ old('gender') == 'Non-Binary' ? 'selected' : '' }}>Non-Binary</option>
+                                        </select>
+                                    </div>
+        
+                                    <!-- Category -->
+                                    <div class="col-md-6">
+                                        <select name="category" class="form-control" required>
+                                            <option value="">Orientation</option>
+                                            <option value="Straight" {{ old('category') == 'Straight' ? 'selected' : '' }}>Straight</option>
+                                            <option value="Gay" {{ old('category') == 'Gay' ? 'selected' : '' }}>Gay</option>
+                                            <option value="Bi-Sexual" {{ old('category') == 'Bi-Sexual' ? 'selected' : '' }}>Bi-Sexual</option>
+                                        </select>
+                                    </div>
+        
+                                    <!-- Tags (Select2) -->
+                                    <div class="col-12">
+                                        <label>Choose your tags:</label>
+                                        <select id="tags" name="tags[]" class="form-control select2" multiple style="width: 100%;">
+                                            @foreach ($tags as $item)
+                                                <option value="{{ $item->id }}" {{ in_array($item->id, old('tags', [])) ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+        
+                                    <!-- Rating -->
+                                    <div class="col-12">
+                                        <label class="form-label">What would you rate the experience?</label>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="star-rating">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <input type="radio" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}><i></i>
+                                                @endfor
+                                            </div>
+                                            <span id="rating-value" class="h5">0</span> out of 5 stars
+                                        </div>
+                                    </div>
+        
+                                    <!-- CKEditor -->
+                                    <div class="col-12">
+                                        <label for="story">Your Story</label>
+                                        <div id="editor">{!! old('story') !!}</div>
+                                        <input type="hidden" name="story" id="story-content">
+                                    </div>
+        
+                                    <!-- Captcha -->
+                                    <div class="col-12">
+                                        <label>What is {{ session('question') ?? '5 + 2' }} = </label>
+                                        <input type="text" name="ans" required class="form-control" placeholder="Your answer">
+                                    </div>
+        
+                                    <!-- Terms -->
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="terms" id="id-terms" required {{ old('terms') ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="id-terms">
+                                                Accept our terms and condition
+                                            </label>
+                                        </div>
+                                    </div>
+        
+                                    <!-- Submit -->
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary">Submit Story</button>
+                                        <div class="form-result mt-3"></div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li class="col-12">
-                                <h5>Office</h5>
-                                <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-start">
-                                    <em class="icon text-base fs-5 mb-2 mb-lg-0 me-lg-2 ni ni-map-pin-fill"></em>
-                                    <span>442 Belle Terre St Floor 7, San Francisco, AV 4206</span>
-                                </div>
-                            </li>
-                        </ul>
+                            </form>
+        
+                        </div>
                     </div>
-                </div> --}}
+                </div>
+            </div>
+        </div>
+        
+
+        {{-- <div class="section-content">
+            <div class="row g-gs justify-content-center justify-content-lg-between">
+              
                 <div class="d-flex justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
                         <div class="card border-0 shadow-sm rounded-4">
                             <div class="card-body">
-                                {{-- <h3 class="title fw-medium mb-4">Please feel free to contact us using form below</h3> --}}
+                              
                                 @if(session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
@@ -216,45 +315,7 @@
 
                                                           
                                                             
-                                                             {{-- <optgroup label="Mood / Emotion">
-                                                                <option>Romantic</option>
-                                                                <option>Passionate</option>
-                                                                <option>Sweet</option>
-                                                                <option>Awkward</option>
-                                                                <option>Emotional</option>
-                                                                <option>Vulnerable</option>
-                                                                <option>Forbidden</option>
-                                                                <option>Confessional</option>
-                                                            </optgroup>
-                                                            <optgroup label="Experience / Theme">
-                                                            <option>First Time</option>
-                                                            <option>One Night Stand</option>
-                                                            <option>Vacation Romance</option>
-                                                            <option>Breakup</option>
-                                                            <option>Fantasy Realized</option>
-                                                            <option>Public Place</option>
-                                                            <option>Reunion</option>
-                                                            <option>Drunk Night</option>
-                                                            </optgroup>
-                                                            <optgroup label="Relationship / Role">
-                                                            <option>Partner</option>
-                                                            <option>Ex</option>
-                                                            <option>Stranger</option>
-                                                            <option>Crush</option>
-                                                            <option>Roommate</option>
-                                                            <option>High School Love</option>
-                                                            <option>Online Match</option>
-                                                            <option>Neighbor</option>
-                                                            </optgroup>
-                                                            <optgroup label="Other">
-                                                            <option>LGBTQ+</option>
-                                                            <option>NSFW</option>
-                                                            <option>Complicated</option>
-                                                            <option>Still Thinking About It</option>
-                                                            <option>No Regrets</option>
-                                                            <option>Memory Lane</option> 
-                                                            </optgroup> --}}
-                                                            
+                                                             
                                                         </select>
                                                 </div>
                                             </div>
@@ -287,8 +348,7 @@
                                                     <!-- Hidden field that will carry the data -->
                                                     <input type="hidden" name="story" id="story-content">
 
-                                                    {{-- <textarea name="story" id="editor" class="form-control form-control-lg" rows="10" placeholder="Describe everything that happened and how you felt. Be detailed as much as you can" required>{{ old('story') }}</textarea> --}}
-                                                </div>
+                                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -317,7 +377,7 @@
                     </div>
                 </div>
             </div>
-        </div><!-- .section-content -->
+        </div><!-- .section-content --> --}}
     </div><!-- .container -->
 </section><!-- .section -->
 

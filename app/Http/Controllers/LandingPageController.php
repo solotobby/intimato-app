@@ -157,8 +157,22 @@ class LandingPageController extends Controller
        
         $post->views += 1;
         $post->save();
+
+        $relatedStories = Post::where('category', $post->category)
+        ->where('id', '!=', $post->id)
+        ->whereHas('tags', function ($query) use ($post) {
+            $query->whereIn('tags.id', $post->tags->pluck('id'));
+        })
+        // ->with('tags')
+        ->limit(7)
+        ->get();
+
+        $metaTitle = $post->where_it_happen;
+        // $keywords = $post->tags->pluck('name')->toArray();
+        // $keywordsArray = implode(', ', $keywords);
         
-        return view('view_story', ['post' => $post]);
+        
+        return view('view_story', ['post' => $post, 'relatedStories' => $relatedStories, 'metaTitle' => $metaTitle]);
     }
 
     public function subscribe(){

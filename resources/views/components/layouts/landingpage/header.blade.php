@@ -35,11 +35,11 @@
                                 <span class="nk-menu-text">About Us</span>
                             </a>
                         </li>
-                        <li class="nk-menu-item">
+                        {{-- <li class="nk-menu-item">
                             <a href="{{ url('categories') }}" class="nk-menu-link">
                                 <span class="nk-menu-text">Featured Categories</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nk-menu-item">
                             <a href="{{ url('terms') }}" class="nk-menu-link">
                                 <span class="nk-menu-text">Terms of Use</span>

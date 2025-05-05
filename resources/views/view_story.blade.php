@@ -1,5 +1,5 @@
 @extends('components.layouts.landingpage.master')
-@section('title', 'Intitmato - Share stories of intimate moments')
+@section('title', $metaTitle ?? 'Read anonymous confessions | Intimatu')
 @section('content')
 
 <section class="section has-mask">
@@ -44,6 +44,109 @@
                     </div>
                 </div><!-- .col -->
             </div><!-- .row -->
+        </div><!-- .section-content -->
+    </div><!-- .container -->
+</section><!-- .section -->
+
+<section class="section section-sm section-0">
+    <div class="container">
+        <div class="section-head">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-9 col-xl-8 col-xxl-6">
+                    <h2 class="title">Similar Posts</h2>
+                </div>
+            </div>
+        </div><!-- .section-head -->
+        <div class="section-content">
+            <div class="swiper-init position-relative swiper-button-hide-disabled" data-breakpoints='{"0":{"slidesPerView":1}, "778": {"slidesPerView": 2},"1200":{"slidesPerView":3}}' data-space-between="32">
+                <div class="swiper-wrapper">
+                    @foreach($relatedStories as $story)
+                        <div class="swiper-slide">
+                            <div class="card border-0 shadow-tiny rounded-4">
+                                <div class="card-body p-4">
+                                    {{-- <a class="d-block" href="blog-single.html"><img class="rounded-4 w-100" src="images/blog/a.jpg" alt=""></a> --}}
+                                    <a href="#" class="badge px-3 py-2 mt-4 mb-3 text-bg-primary-soft fw-normal rounded-pill">{{ $story->category}}</a>
+                                    <h3><a href="{{ url('story/'.$story->_id) }}" class="link-dark line-clamp-2">{{$story->where_it_happen}}</a></h3>
+                                    <div class="d-flex pt-4">
+                                        <div class="media media-lg media-middle media-lg rounded-pill">
+                                            <em class="icon mx-0 ni ni-user"></em>
+                                            {{-- <img src="images/avatar/author/sm-d.jpg" alt=""> --}}
+                                        </div>
+                                        <div class="media-info ms-3">
+                                            <h6 class="mb-1">Anonymous</h6>
+                                            <ul class="list list-row gx-1">
+                                                {{-- <li>
+                                                    <div class="sub-text">Feb 10, 2023</div>
+                                                </li> --}}
+                                                <li><em class="icon mx-0 ni ni-eye"></em></li>
+                                                <li>
+                                                    <div class="sub-text">{{ $story->views }}</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- .card -->
+                        </div><!-- .swiper-slide -->
+
+                      
+                    @endforeach
+                    {{-- <div class="swiper-slide">
+                        <div class="card border-0 shadow-tiny rounded-4">
+                            <div class="card-body p-4">
+                                <a class="d-block" href="blog-single.html"><img class="rounded-4 w-100" src="images/blog/b.jpg" alt=""></a>
+                                <a href="#" class="badge px-3 py-2 mt-4 mb-3 text-bg-primary-soft fw-normal rounded-pill">Artificial Intelligence</a>
+                                <h3><a href="blog-single.html" class="link-dark line-clamp-2">What Is An AI Writing Assistant, And How Is It Beneficial?</a></h3>
+                                <div class="d-flex pt-4">
+                                    <div class="media media-lg media-middle media-lg rounded-pill">
+                                        <img src="images/avatar/author/sm-e.jpg" alt="">
+                                    </div>
+                                    <div class="media-info ms-3">
+                                        <h6 class="mb-1">Frances Burns</h6>
+                                        <ul class="list list-row gx-1">
+                                            <li>
+                                                <div class="sub-text">Feb 9, 2023</div>
+                                            </li>
+                                            <li><em class="icon mx-0 ni ni-dot"></em></li>
+                                            <li>
+                                                <div class="sub-text">8 min read</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- .card -->
+                    </div><!-- .swiper-slide -->
+                    <div class="swiper-slide">
+                        <div class="card border-0 shadow-tiny rounded-4">
+                            <div class="card-body p-4">
+                                <a class="d-block" href="blog-single.html"><img class="rounded-4 w-100" src="images/blog/c.jpg" alt=""></a>
+                                <a href="#" class="badge px-3 py-2 mt-4 mb-3 text-bg-primary-soft fw-normal rounded-pill">Content Marketing</a>
+                                <h3><a href="blog-single.html" class="link-dark line-clamp-2">15 Uses of Content Generator Tools and Why You Need Them</a></h3>
+                                <div class="d-flex pt-4">
+                                    <div class="media media-lg media-middle media-lg rounded-pill">
+                                        <img src="images/avatar/author/sm-g.jpg" alt="">
+                                    </div>
+                                    <div class="media-info ms-3">
+                                        <h6 class="mb-1">John Carter</h6>
+                                        <ul class="list list-row gx-1">
+                                            <li>
+                                                <div class="sub-text">Feb 9, 2023</div>
+                                            </li>
+                                            <li><em class="icon mx-0 ni ni-dot"></em></li>
+                                            <li>
+                                                <div class="sub-text">10 min read</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- .card -->
+                    </div><!-- .swiper-slide --> --}}
+                </div><!-- .swiper-wrapper -->
+                <div class="swiper-button-prev btn btn-icon btn-dark btn-soft rounded-pill position-absolute top-50 start-0 translate-middle z-index-1"><em class="icon ni ni-arrow-long-left"></em></div>
+                <div class="swiper-button-next btn btn-icon btn-dark btn-soft rounded-pill position-absolute top-50 start-100 translate-middle z-index-1"><em class="icon ni ni-arrow-long-right"></em></div>
+            </div>
         </div><!-- .section-content -->
     </div><!-- .container -->
 </section><!-- .section -->

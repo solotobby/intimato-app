@@ -26,8 +26,13 @@ class PayPalController extends Controller
         $response = getSubscription($id);
 
          $response['billing_info']['next_billing_time'];
+
         if($response['status'] == 'ACTIVE'){
-            $getPlan = Plan::where('plan_id', $response['plan_id'])->first();
+
+            $getPlan = Plan::where('plan_id', $response['plan_id'])
+            ->orWhere('discount_plan_id', $response['plan_id'])
+            ->firstOrFail();
+
             $paypal_subscription_id = $response['id'];
 
             $subscription = SubscriptionPlan::create(['user_id' => auth()->user()->id, 'plan_id' =>$getPlan->id, 'paypal_subscription_id' => $paypal_subscription_id, 'status' => $response['status'], 'channel'=>'PAYPAL', 'starts_at' => $response['status_update_time'], 'ends_at' =>  $response['billing_info']['next_billing_time']]);

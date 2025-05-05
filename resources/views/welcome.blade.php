@@ -38,7 +38,7 @@
                                         </li> --}}
                                         <li><em class="icon mx-0 ni ni-eye"></em></li>
                                         <li>
-                                            <div class="sub-text">2094</div>
+                                            <div class="sub-text">{{ $item->views }}</div>
                                         </li>
                                     </ul>
                                 </div>
