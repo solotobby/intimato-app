@@ -21,7 +21,7 @@
                 </ul>
             </div>
             <div class="nk-footer-copyright fs-6 px-3"> &copy; {{date('Y')}} All Rights Reserved to <span style="font-size:; color: black; display: inline-flex; align-items: center; gap: 4px;">
-                <strong>Intimato</strong>
+                <strong>Intimatu</strong>
                 <i class="off icon ni ni-heart"></i>
             </span> </div>
         </div>

@@ -38,6 +38,113 @@ if (! function_exists('getAccessToken')) {
         }
     }
 
+    if (! function_exists('createProduct')) {
+        function createProduct(){
+    
+            $accessToken = getAccessToken();
+            $url = env('PAYPAL_URL').'catalogs/products';
+    
+            $payload =[
+                'name' => 'Intimatu Premium Content Access',
+                'description' => 'Subscription to premium stories and features',
+                'type' => 'SERVICE', // Type of product: SERVICE or PHYSICAL
+                'category' => 'SOFTWARE_AND_DIGITAL_MEDIA', // Example category
+                'image_url' => 'https://yourapp.com/images/premium-product.png',
+                'home_url' =>'https://eclatspad.com/' //url('/subscription/list'),
+            ];
+    
+             $response = Http::withHeaders([
+                'Authorization' => "Bearer {$accessToken}",
+                'Content-Type' => 'application/json',
+            ])->withBody(json_encode($payload), 'application/json')->post($url)->throw();
+    
+        
+            return json_decode($response->getBody()->getContents(), true);
+    
+        }
+    }
+
+    if (! function_exists('listProduct')) {
+        function listProduct(){
+    
+            $accessToken = getAccessToken();
+            $url = env('PAYPAL_URL').'catalogs/products';
+    
+            $payload =[
+                'name' => 'Intimatu Premium Content Access',
+                'description' => 'Subscription to premium stories and features',
+                'type' => 'SERVICE', // Type of product: SERVICE or PHYSICAL
+                'category' => 'SOFTWARE_AND_DIGITAL_MEDIA', // Example category
+                'image_url' => 'https://yourapp.com/images/premium-product.png',
+                'home_url' =>'https://eclatspad.com/' //url('/subscription/list'),
+            ];
+    
+             $response = Http::withHeaders([
+                'Authorization' => "Bearer {$accessToken}",
+                'Content-Type' => 'application/json',
+            ])->get($url)->throw();
+    
+        
+            return json_decode($response->getBody()->getContents(), true);
+    
+        }
+    }
+
+    if (! function_exists('createPlans')) {
+        function createPlans($plan){
+    
+            $url = env('PAYPAL_URL').'billing/plans';
+            $accessToken = getAccessToken();
+    
+            $payload =  [
+                "product_id"=> $plan['product_id'],
+                'name' => $plan['name'],
+                'description' => $plan['description'],
+                'status' => 'ACTIVE',
+                'billing_cycles' => [
+                [
+                    'frequency' => [
+                        'interval_unit' => $plan['interval_unit'],
+                        'interval_count' => $plan['interval_count'],
+                    ],
+                    'tenure_type' => 'REGULAR',
+                    'sequence' => 1,
+                    'total_cycles' => 0, // 0 for unlimited billing
+                    'pricing_scheme' => [
+                        'fixed_price' => [
+                            'value' => $plan['price'],
+                            'currency_code' => 'GBP',
+                        ],
+                    ],
+                ],
+            ],
+                'payment_preferences' => [
+                    'auto_bill_outstanding' => true,
+                    'setup_fee' => [
+                        'value' => '0',
+                        'currency_code' => 'GBP',
+                    ],
+                    'setup_fee_failure_action' => 'CONTINUE',
+                    'payment_failure_threshold' => 6,
+                ],
+                'taxes' => [
+                    'percentage' => '20', // Tax percentage
+                    'inclusive' => false,
+                ],
+            ];
+    
+           
+            $response = Http::withHeaders([
+                'Authorization' => "Bearer {$accessToken}",
+                'Content-Type' => 'application/json',
+            ])->post($url, $payload)->throw();
+    
+            return json_decode($response->getBody()->getContents(), true);
+           
+        }
+    }
+
+
     if (! function_exists('getPlans')) {
         function getPlans(){
         
@@ -85,7 +192,7 @@ if (! function_exists('createSubscription')) {
                 'email_address' => $user->email, //$subscriberDetails['email'],
             ],
             'application_context' => [
-                'brand_name' => 'Intimato❤️',
+                'brand_name' => 'Intimatu❤️',
                 'locale' => 'en-GB',
                 'shipping_preference' => 'NO_SHIPPING',
                 'user_action' => 'SUBSCRIBE_NOW', // Directs the user to confirm the subscription

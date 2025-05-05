@@ -24,7 +24,7 @@
                             Everyone has that one moment they’ll never forget.
                             The kind that lingers in your mind — soft, passionate, awkward, wild, or unexpectedly emotional. It’s the secret memory you sometimes replay when no one’s watching.
                             <br>
-                            At Intimato❤️, we built a home for those stories.
+                            At Intimatu❤️, we built a home for those stories.
 
                             We are a digital sanctuary where people can anonymously share their most intimate experiences — the kind that happen behind closed doors, in the quiet hours, or in flashes of connection that leave a lasting imprint.
                         </p>
@@ -87,7 +87,7 @@
                             Thank you for being here. <br>
                             <i>Whether you whisper your story into our form or scroll through someone else’s, we hope this space brings you a little closer to yourself — and to the invisible threads that tie us all together.</i>
                             
-                            The Intimato❤️ Team
+                            The Intimatu❤️ Team
                         </p>
 
                         

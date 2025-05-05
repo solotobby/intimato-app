@@ -30,7 +30,7 @@
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/favicon.png">
-    <title>Intimato</title>
+    <title>Intimatu</title>
     <link rel="stylesheet" href="{{asset('assets/css/style.css?v1.0.0')}}">
 </head>
 
@@ -45,12 +45,12 @@
 
                     <a href="{{url('/')}}" class="logo-link">
                         <span style="font-size: xx-large; color: black; display: inline-flex; align-items: center; gap: 4px;">
-                            <strong>Intimato</strong>
+                            <strong>Intimatu</strong>
                             <i class="off icon ni ni-heart"></i>
                         </span>
                         
                         {{-- <div class="logo-wrap">    
-                            {{-- <strong style="font-size: xx-large">Intimato <span class="off icon ni ni-heart"></span></strong> --}}
+                            {{-- <strong style="font-size: xx-large">Intimatu <span class="off icon ni ni-heart"></span></strong> --}}
                             {{-- <img class="logo-img logo-light" src="{{asset('images/logo.png')}}" srcset="{{asset('images/logo2x.png 2x')}}" alt="">
                             <img class="logo-img logo-dark" src="{{asset('images/logo-dark.png')}}" srcset="{{asset('images/logo-dark2x.png 2x')}}" alt="">
                             <img class="logo-img logo-icon" src="{{asset('images/logo-icon.png')}}" srcset="{{asset('images/logo-icon2x.png 2x')}}" alt=""> --

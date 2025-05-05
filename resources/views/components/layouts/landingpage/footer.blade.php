@@ -47,7 +47,7 @@
                         </a> --}}
                         <h4 class="title">Share stories of intimate moments</h4>
                         {{-- <p>Automatically genarate blog articles, website copy, landing pages &amp; digital ads for your business in seconds. Unleash the most advanced AI writer to boost your traffic and productitvity. </p> --}}
-                        <p class="text-heading mt-4">&copy; {{date('Y')}} Intimato.  All Right Reserved</p>
+                        <p class="text-heading mt-4">&copy; {{date('Y')}} Intimatu.  All Right Reserved</p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 @extends('components.layouts.landingpage.master')
-@section('title', 'Intitmato - Share stories of intimate moments')
+@section('title', 'Intitmatu - Share stories of intimate moments')
 @section('content')
 
 <section class="section section-bottom-0 has-shape">

@@ -29,10 +29,15 @@ class Showplans extends Component
 
     public function makeSubscription($id){
 
-
-       
+        $planID = '';
         $plan = Plan::where('id', $id)->first();
-        $res = createSubscription($plan->plan_id);
+        if($plan->is_discount == true){
+            $planID = $plan->discount_plan_id;
+        }else{
+            $planID = $plan->plan_id;
+        }
+        
+        $res = createSubscription($planID);
 
         if($res['status'] == 'APPROVAL_PENDING'){
             
@@ -40,9 +45,7 @@ class Showplans extends Component
 
             return redirect($res['links'][0]['href']);
         }
-
-
-        
+  
     }
 
     public function render()

@@ -22,7 +22,7 @@
                     <div class="block-text pe-xxl-7">
                         {{-- <h2 class="title">Generate months of social media content in minutes</h2> --}}
                         <p class="lead">
-                            <b>Your privacy matters to us.</b> Intimato❤️ is built on the idea of safe, anonymous sharing. Here’s how we protect your information.
+                            <b>Your privacy matters to us.</b> Intimatu❤️ is built on the idea of safe, anonymous sharing. Here’s how we protect your information.
                         </p>
                         <p>
                             <b>1. What we Collect </b><br>
@@ -77,7 +77,7 @@
                         </p>
                         <p>
                             <b>7. Contact </b> <br>
-                            If you have questions, concerns, or want to request data deletion, contact us at: hello@intimato.com
+                            If you have questions, concerns, or want to request data deletion, contact us at: hello@Intimatu.com
                         </p>
                         
                         <ul class="btn-list btn-list-inline gy-0">

@@ -21,7 +21,7 @@
                     <div class="block-text pe-xxl-7">
                         {{-- <h2 class="title">Generate months of social media content in minutes</h2> --}}
                         <p class="lead">
-                            Welcome to Intimato❤️, a digital platform where people share intimate stories anonymously. By accessing or using our website, you agree to the following Terms & Conditions.
+                            Welcome to Intimatu❤️, a digital platform where people share intimate stories anonymously. By accessing or using our website, you agree to the following Terms & Conditions.
                         </p>
                         <p>
                             <b>1. What we Collect</b><br>

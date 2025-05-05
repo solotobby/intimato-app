@@ -1,6 +1,5 @@
 <div>
     {{-- Close your eyes. Count to one. That is how long forever feels. --}}
-    {{ $total }}
     <div class="nk-content">
         <div class="container-xl">
             <div class="nk-content-inner">

@@ -7,7 +7,7 @@
                 <div class="nk-header-logo">
                     <a href="{{url('/')}}" class="logo-link">
                         <div class="logo-wrap">
-                            <strong style="font-size: x-large">Intimato  <em class="off icon ni ni-heart"></em></strong>
+                            <strong style="font-size: x-large">Intimatu  <em class="off icon ni ni-heart"></em></strong>
                             {{-- <img class="logo-img logo-light" src="images/logo.png" srcset="images/logo2x.png 2x" alt="">
                             <img class="logo-img logo-dark" src="images/logo-dark.png" srcset="images/logo-dark2x.png 2x" alt=""> --}}
                         </div>

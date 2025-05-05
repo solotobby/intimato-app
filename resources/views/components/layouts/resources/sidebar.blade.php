@@ -10,7 +10,7 @@
             <a href="{{url('dashboard')}}" class="logo-link">
                 <div class="logo-wrap">
                     <span style="font-size: x-large; color: black; display: inline-flex; align-items: center; gap: 4px;">
-                        <strong>Intimato</strong>
+                        <strong>Intimatu</strong>
                         <i class="off icon ni ni-heart"></i>
                     </span>
                     {{-- <img class="logo-img logo-light" src="{{asset('images/logo.png')}}" srcset="{{asset('images/logo2x.png 2x')}}" alt="">
@@ -67,6 +67,14 @@
                                     <em class="icon ni ni-list"></em>
                                 </span>
                                 <span class="nk-menu-text">Subscription Mgt.</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item has-sub">
+                            <a href="{{route('admin.tags')}}" class="nk-menu-link">
+                                <span class="nk-menu-icon">
+                                    <em class="icon ni ni-list"></em>
+                                </span>
+                                <span class="nk-menu-text">Tags</span>
                             </a>
                         </li>
                     @endif
