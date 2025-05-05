@@ -1,5 +1,5 @@
 @extends('components.layouts.landingpage.master')
-@section('title', 'Intitmato - Submit Story')
+@section('title', 'Intimatu - Submit Story')
 @section('content')
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
