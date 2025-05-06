@@ -13,6 +13,7 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Stories\CreateStory;
+use App\Livewire\Stories\MyStories;
 use App\Livewire\Stories\StoryDetail;
 use App\Livewire\Subscriptions\Showplans;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('create/story', CreateStory::class)->name('create.story');
     Route::get('view/story/{id}', StoryDetail::class);
     Route::get('show/plans', Showplans::class)->name('show.plans');
+    Route::get('my/stories', MyStories::class)->name('my.stories');
 
     //paypal subscription routes
     Route::get('cancel/process', [PayPalController::class, 'cancelProcess'])->name('cancel.process');

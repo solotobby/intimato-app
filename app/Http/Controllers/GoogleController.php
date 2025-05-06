@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Exception;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 
 class GoogleController extends Controller
@@ -40,9 +41,9 @@ class GoogleController extends Controller
             }else{
                 $psword = Str::random(16);
                 $newUser = User::updateOrCreate(['email' => $user->email],[
-                        'name' => $user->name,
+                        'name' =>$this->username($user->name),
                         'google_id'=> $user->id,
-                        'name' => $user->name,
+                        // 'name' => $user->name,
                         'avarta' => $user->avatar,
                         'gender' => 'Not-Yet-Decided',
                         'password' => Hash::make($psword),
@@ -63,6 +64,14 @@ class GoogleController extends Controller
             // return redirect(url('login'));
             dd($e->getMessage());
         }
+    }
+
+    public function username($name){
+            // Split name into words
+            $faker = Faker::create();
+            $username = Str::slug($faker->username) . rand(1000, 9999);
+            return ucfirst($username);
+          
     }
 
 }

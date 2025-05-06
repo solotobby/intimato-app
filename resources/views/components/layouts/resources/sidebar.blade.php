@@ -36,16 +36,25 @@
                     <li class="nk-menu-item has-sub">
                         <a href="{{route('create.story')}}" class="nk-menu-link">
                             <span class="nk-menu-icon">
-                                <em class="icon ni ni-layers"></em>
+                                <em class="icon ni ni-edit"></em>
                             </span>
                             <span class="nk-menu-text">Make a Post</span>
                         </a>
                     </li>
 
                     <li class="nk-menu-item has-sub">
+                        <a href="{{route('my.stories')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-list"></em>
+                            </span>
+                            <span class="nk-menu-text">My Stories</span>
+                        </a>
+                    </li>
+
+                    <li class="nk-menu-item has-sub">
                         <a href="{{route('show.plans')}}" class="nk-menu-link">
                             <span class="nk-menu-icon">
-                                <em class="icon ni ni-layers"></em>
+                                <em class="icon ni ni-sign-usd"></em>
                             </span>
                             <span class="nk-menu-text">Show Plans</span>
                         </a>

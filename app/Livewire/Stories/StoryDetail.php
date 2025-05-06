@@ -16,14 +16,16 @@ class StoryDetail extends Component
     public function mount(){ 
         $user = Auth::user();
         $_id = $this->id;
+       
         $this->post = Post::where('_id', $_id)->first();
-        $this->post->views += 1;
-        $this->post->save();
-
         if($user->id == $this->post->user_id){
             //allow unlimited read with recording, if user is the creator of the post
             return;
         }
+
+     
+        $this->post->views += 1;
+        $this->post->save();
 
         $check = PostRead::query();
         $checkExist = $check->where('post_id', $this->post->id)->where('user_id', $user->id)->exists();
