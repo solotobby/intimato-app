@@ -34,7 +34,7 @@ class GoogleController extends Controller
             if($finduser){
          
                 Auth::login($finduser);
-                return redirect(route('home', absolute: false));
+                return redirect(route('dashboard', absolute: false));
                 // return redirect()->intended('home');
          
             }else{
