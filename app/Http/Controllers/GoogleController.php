@@ -28,7 +28,7 @@ class GoogleController extends Controller
         try {
         
             $user = Socialite::driver('google')->stateless()->user();
-            dd($user);
+           
             $finduser = User::where('google_id', $user->id)->first();
          
             if($finduser){
@@ -54,7 +54,7 @@ class GoogleController extends Controller
                     
                     Auth::login($newUser);
         
-                    return redirect(route('home', absolute: false));
+                    return redirect(route('dashboard', absolute: false));
                 }
 
             }
