@@ -14,6 +14,18 @@
     <link rel="shortcut icon" href="images/favicon.png">
     <title>Intimatu</title>
     <link rel="stylesheet" href="{{asset('assets/css/style.css?v1.0.0')}}">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80MR2MJQ26"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-80MR2MJQ26');
+    </script>
+
+
 </head>
 
 <body class="nk-body ">

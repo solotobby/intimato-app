@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Statistics;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -230,6 +231,21 @@ if (! function_exists('getSubscription')) {
 
          return json_decode($response->getBody()->getContents(), true);
 
+    }
+}
+
+if(!function_exists('dailyVisit')){
+    function dailyVisit($type){ 
+        $date = \Carbon\Carbon::today()->toDateString();
+        
+        $check = Statistics::where('date', $date)->where('type', $type)->first();
+        if($check == null)
+        {
+            Statistics::create(['type' => $type, 'date' => $date, 'count' => '1']);
+        }else{
+            $check->count += 1;
+            $check->save();
+        }
     }
 }
 

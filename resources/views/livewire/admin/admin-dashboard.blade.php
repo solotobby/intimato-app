@@ -29,11 +29,11 @@
                                 <div class="card card-full bg-blue bg-opacity-10 border-0">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between mb-1">
-                                            <div class="fs-6 text-light mb-0">Drafts Available</div>
-                                            <a href="document-drafts.html" class="link link-blue">See All</a>
+                                            <div class="fs-6 text-light mb-0">Daily Visit</div>
+                                            {{-- <a href="document-drafts.html" class="link link-blue">See All</a> --}}
                                         </div>
-                                        <h5 class="fs-1">3 <small class="fs-3">Drafts</small></h5>
-                                        <div class="fs-7 text-light mt-1"><span class="text-dark">7</span>/10 free drafts created</div>
+                                        <h5 class="fs-1">{{ $dailyVisit }} <small class="fs-3">Visits today</small></h5>
+                                        {{-- <div class="fs-7 text-light mt-1"><span class="text-dark">7</span>/10 free drafts created</div> --}}
                                     </div>
                                 </div><!-- .card -->
                             </div><!-- .col -->

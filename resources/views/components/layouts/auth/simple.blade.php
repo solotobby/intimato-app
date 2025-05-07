@@ -77,23 +77,26 @@
                             <div class="nk-footer-links px-3">
                                 <ul class="nav nav-sm">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/#">Home</a>
+                                        <a class="nav-link" href="{{ url('/') }}">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/#">Pricing</a>
+                                        <a class="nav-link" href="{{ url('about') }}">About Us</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/#">Privacy Policy</a>
+                                        <a class="nav-link" href="{{ url('privacy') }}">Privacy Policy</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/#">FAQ</a>
+                                        <a class="nav-link" href="{{ url('terms') }}">Terms & Condition</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/#">Contact</a>
-                                    </li>
+                                    
                                 </ul>
                             </div>
-                            <div class="nk-footer-copyright fs-6 px-3"> &copy; 2023 All Rights Reserved to <a href="#">Copygen</a>. </div>
+                            <div class="nk-footer-copyright fs-6 px-3"> &copy; {{date('Y')}} All Rights Reserved to  
+                                <span style="font-size:largess; color: black; display: inline-flex; align-items: center; gap: 4px;">
+                                    <strong>Intimatu</strong>
+                                    <i class="off icon ni ni-heart"></i>
+                                </span>. 
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 class LandingPageController extends Controller
 {
     public function landingPage(){
+        dailyVisit('home_page');
         $posts = Post::orderBy('created_at', 'DESC')->get();
         return view('welcome', ['posts' => $posts]);
     }
