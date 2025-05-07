@@ -97,8 +97,8 @@
                 @csrf
 
                 <div class="mb-3">
-                    <label class="form-label">Title (Optional)</label>
-                    <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Enter Title">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Enter Title" required>
                 </div>
 
                 <div class="mb-3">

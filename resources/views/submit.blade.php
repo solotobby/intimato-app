@@ -108,7 +108,7 @@
                                 <div class="row g-4">
                                     <!-- Title -->
                                     <div class="col-12">
-                                        <input type="text" name="title" class="form-control form-control-lg" placeholder="Title (Optional)" value="{{ old('title') }}">
+                                        <input type="text" name="title" required class="form-control form-control-lg" placeholder="Title" value="{{ old('title') }}">
                                     </div>
         
                                     <!-- Email -->

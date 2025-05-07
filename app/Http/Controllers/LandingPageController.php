@@ -53,7 +53,7 @@ class LandingPageController extends Controller
     public function  storeStory(Request $request) {
 
         $request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
             'where_it_happen' => 'required|string|max:255',
             'age' => 'required|numeric|min:10|max:100',

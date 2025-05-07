@@ -24,7 +24,7 @@
                         <div class="card-body p-4">
                             {{-- <a class="d-block" href="blog-single.html"><img class="rounded-4 w-100" src="images/blog/a.jpg" alt=""></a> --}}
                             <a href="#" class="badge px-3 py-2 mt-4 mb-3 text-bg-primary-soft fw-normal rounded-pill">{{ $item->category}}</a>
-                            <h3><a href="{{ url('story/'.$item->_id) }}" class="link-dark line-clamp-2">{{$item->where_it_happen}}</a></h3>
+                            <h3><a href="{{ url('story/'.$item->_id) }}" class="link-dark line-clamp-2">{{$item->title}}</a></h3>
                             <div class="d-flex pt-4">
                                 <div class="media media-lg media-middle media-lg rounded-pill">
                                     <em class="icon mx-0 ni ni-user"></em>

@@ -18,7 +18,7 @@ class PostController extends Controller
         // return $request;
 
         $request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => 'title|string|max:255',
             'email' => 'nullable|email|max:255',
             'where_it_happen' => 'required|string|max:255',
             'age' => 'required|numeric|min:10|max:100',
