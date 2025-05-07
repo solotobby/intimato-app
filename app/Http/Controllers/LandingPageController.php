@@ -165,7 +165,7 @@ class LandingPageController extends Controller
             $query->whereIn('tags.id', $post->tags->pluck('id'));
         })
         // ->with('tags')
-        ->limit(7)
+        ->limit(3)
         ->get();
 
         $metaTitle = $post->where_it_happen;
