@@ -40,7 +40,7 @@ class StoryDetail extends Component
         $checkCount = PostRead::where('user_id', $user->id)->count();
         
         if($user->activeSubscription()['is_subscribed'] == false){
-            if($checkCount >= 30){
+            if($checkCount >= 20){
                 return redirect()->route('show.plans');
             }
         }

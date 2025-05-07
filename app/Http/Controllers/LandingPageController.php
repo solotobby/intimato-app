@@ -130,7 +130,7 @@ class LandingPageController extends Controller
   
          
         // Redirect if more than 5 stories read
-            if (count($views['stories_read']) >= 30) {
+            if (count($views['stories_read']) >= 20) {
                 return redirect()->route('subscribe');
             }
          
