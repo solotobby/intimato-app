@@ -57,20 +57,37 @@
                         </div> --}}
                     </a>
                 </div>
-                <div class="container p-2 p-sm-4 mt-auto">
+
+                {{-- <div class="container p-2 p-sm-4 mt-auto">
                     <div class="row justify-content-center">
                         <div class="col-md-7 col-lg-5 col-xl-5 col-xxl-4">
                             <div class="nk-block">
+                                
 
 
-                                {{ $slot }}
+                              
 
 
                                 
                             </div>
                         </div>
                     </div>
+                </div> --}}
+
+                <div class="container px-3 py-4 py-sm-5 mt-auto">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                            <div class="card shadow-sm border-0 rounded-4">
+                                <div class="card-body">
+
+                                    {{ $slot }}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="nk-footer">
                     <div class="container-xl">
                         <div class="d-flex align-items-center flex-wrap justify-content-between mx-n3">

@@ -55,7 +55,7 @@
                                 <div class="nk-block-head text-center mb-4 pb-2">
                                     <div class="nk-block-head-content">
                                         <h3 class="nk-block-title mb-1">Log into Your Account</h3>
-                                        <p class="small">Sign in to your account to customize your content generation settings and view your history.</p>
+                                        {{-- <p class="small">Sign in to your account to customize your content generation settings and view your history.</p> --}}
                                     </div>
                                 </div>
 
@@ -81,11 +81,11 @@
                                                 </div>
                                             </div><!-- .form-group -->
                                         </div>
-                                        @if (Route::has('password.request'))
+                                        {{-- @if (Route::has('password.request'))
                                             <div class="col-12">
                                                 <a class="link small" href="{{route('password.request')}}">Forgot password?</a>
                                             </div>
-                                        @endif
+                                        @endif --}}
                                         <div class="col-12">
                                             <div class="d-grid">
                                                 <button class="btn btn-primary" type="submit">Login</button>

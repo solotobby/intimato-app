@@ -64,7 +64,7 @@
     <div class="nk-block-head text-center mb-4 pb-2">
         <div class="nk-block-head-content">
             <h3 class="nk-block-title mb-1">Create Your Account</h3>
-            <p class="small">Email verification is required for signup to ensure security, and your email will only be used for identity verification.</p>
+            {{-- <p class="small">Email verification is required for signup to ensure security, and your email will only be used for identity verification.</p> --}}
         </div>
     </div>
     <form wire:submit="register">
