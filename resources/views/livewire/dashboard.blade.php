@@ -68,7 +68,7 @@
                                         <em class="icon ni ni-list-thumb-fill"></em>
                                     </div>
                                     <div class="ms-4 pb-gs border-bottom border-light flex-grow-1">
-                                        <h5 class="fs-4 fw-medium">{{$ls->where_it_happen}}</h5>
+                                        <h5 class="fs-4 fw-medium">{{$ls->title}}</h5>
 
                                         <p class="small text-light line-clamp-2">
                                             {!! \Illuminate\Support\Str::words($ls->story, 35) !!}
