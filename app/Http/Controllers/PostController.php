@@ -36,6 +36,7 @@ class PostController extends Controller
         $posted = Post::create([
             'user_id' => auth()->user()->id,
             '_id' => rand(999,99999),
+            'title' => $request->title,
             'where_it_happen' => $request->where_it_happen, 
             'age' => $request->age, 
             'rating' => $request->rating, 

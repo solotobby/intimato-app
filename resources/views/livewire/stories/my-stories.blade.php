@@ -9,7 +9,7 @@
             <thead class="table-light">
                 <tr>
                     <th class="tb-col">
-                        <div class="fs-13px text-base">where_it_happen</div>
+                        <div class="fs-13px text-base">Where It Happen</div>
                     </th>
                     <th class="tb-col">
                         <div class="fs-13px text-base">Category</div>
