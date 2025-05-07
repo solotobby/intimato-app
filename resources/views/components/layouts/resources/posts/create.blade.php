@@ -71,156 +71,108 @@
 
 </style>
 
-<div class="container-xl">
-    <div class="nk-content-inner">
-        <div class="nk-content-body">
-            <div class="nk-block-head nk-page-head">
-                <div class="nk-block-head-between">
-                    <div class="nk-block-head-content">
-                        <h2 class="display-6">Create Story</h2>
-                        {{-- <p>Give textual form controls like <code>inputs, select, checkbox, radio and textareas</code> an upgrade with custom styles, sizing, focus states, and more.</p> --}}
+<div class="container-sm py-5">
+    <div class="row justify-content-center">
+       
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+           
+
+            <h2 class="h4 text-center mb-4">Create Story</h2>
+
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('store.post') }}" id="story-form">
+                @csrf
+
+                <div class="mb-3">
+                    <label class="form-label">Title (Optional)</label>
+                    <input type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Enter Title">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Where it Happened</label>
+                    <input type="text" class="form-control" name="where_it_happen" value="{{ old('where_it_happen') }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">How old were you</label>
+                    <input type="text" class="form-control" name="age" value="{{ old('age') }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Gender</label>
+                    <select name="gender" class="form-control" required>
+                        <option value="">Select One</option>
+                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                        <option value="Non-Binary" {{ old('gender') == 'Non-Binary' ? 'selected' : '' }}>Non-Binary</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Orientation</label>
+                    <select name="category" class="form-control" required>
+                        <option value="">Select One</option>
+                        <option value="Straight" {{ old('category') == 'Straight' ? 'selected' : '' }}>Straight</option>
+                        <option value="Gay" {{ old('category') == 'Gay' ? 'selected' : '' }}>Gay</option>
+                        <option value="Bi-Sexual" {{ old('category') == 'Bi-Sexual' ? 'selected' : '' }}>Bi-Sexual</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Choose your tags</label>
+                    <select name="tags[]" id="tags" class="form-control select2" multiple>
+                        @php $oldTags = old('tags', []); @endphp
+                        @foreach ($tagList as $item)
+                            <option value="{{ $item->id }}" {{ in_array($item->id, $oldTags) ? 'selected' : '' }}>{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Rate the Experience</label>
+                    <div class="star-rating d-flex align-items-center gap-2">
+                        @for($i = 1; $i <= 5; $i++)
+                            <input type="radio" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}><i></i>
+                        @endfor
+                    </div>
+                    <div class="mt-2">
+                        <span id="rating-value" class="fw-bold">0</span> out of 5 stars
                     </div>
                 </div>
-            </div><!-- .nk-page-head -->
 
-            <div class="nk-block">
-                   
-                <div class="card shadown-none">
-                    <div class="card-body">
-                        <div class="row g-3 gx-gs">
-                             
-                            <form method="POST" action="{{ route('store.post') }}" id="story-form">
-                                @csrf
-                                <div class="d-flex justify-content-center">
-                                    <div class="col-md-6">
-
-                                        @if(session('success'))
-                                            <div class="alert alert-success">
-                                                {{ session('success') }}
-                                            </div>
-                                        @endif
-                                    
-                                        @if ($errors->any())
-                                            <div class="alert alert-danger">
-                                                <ul class="mb-0">
-                                                    @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
-                            
-                                        <div class="form-group mb-3">
-                                            <label for="exampleFormControlInputText1" class="form-label">Title(Optional)</label>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control" value="{{ old('title') }}" name="title" id="exampleFormControlInputText1" placeholder="Enter Title (Optional) ">
-                                            </div>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="exampleFormControlInputText1" class="form-label">Where it Happened</label>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control" required value="{{ old('where_it_happen') }}" name="where_it_happen" id="exampleFormControlInputText1" placeholder="Where did it happen">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                            <label for="exampleFormControlInputText1" class="form-label">How old were you</label>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control" required value="{{ old('age') }}" name="age" id="exampleFormControlInputText1" placeholder="How old were you">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                            <label for="exampleFormControlInputText1" class="form-label">Gender</label>
-                                            <div class="form-control-wrap">
-                                                <select name="gender" class="form-control" required>
-                                                    <option value="">Select One</option>
-                                                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
-                                                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
-                                                        <option value="Non-Binary" {{ old('gender') == 'Non-Binary' ? 'selected' : '' }}>Non-Binary</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                            <label for="exampleFormControlInputText1" class="form-label">Orientation</label>
-                                            <div class="form-control-wrap">
-                                                <select name="category" class="form-control" required>
-                                                    <option value="">Select One</option>
-                                                    <option value="Straight" {{ old('category') == 'Straight' ? 'selected' : '' }}>Straight</option>
-                                                    <option value="Gay" {{ old('category') == 'Gay' ? 'selected' : '' }}>Gay</option>
-                                                    <option value="Bi-Sexual" {{ old('category') == 'Bi-Sexual' ? 'selected' : '' }}>Bi-Sexual</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                                <label for="tags" class="form-label">Choose your tags</label>
-                                                <div class="form-control-wrap">
-                                                    <select name="tags[]" id="tags" multiple="multiple" class="form-control select2">
-                                                        <option value="">Select One</option>
-                                                            @php
-                                                                $oldTags = old('tags', []);
-                                                            @endphp
-
-                                                            @foreach ($tagList as $item)
-                                                                <option value="{{ $item->id }}" {{ in_array($item->id, $oldTags) ? 'selected' : '' }}>
-                                                                    {{ $item->name }}
-                                                                </option>
-                                                            @endforeach
-                                                            {{-- @foreach($tagList as $tag)
-                                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                                            @endforeach --}}
-                                                    </select>
-                                                </div>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                                <label for="exampleFormControlInputText1" class="form-label">What would you Rate the experience</label>
-                                                <div class="form-control-wrap">
-                                                    <div class="star-rating">
-                                                        @for($i = 1; $i <= 5; $i++)
-                                                       
-                                                        <input type="radio" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}><i></i>
-                                                        @endfor
-                                                        {{-- <input type="radio" name="rating" value="1"><i></i>
-                                                        <input type="radio" name="rating" value="2"><i></i>
-                                                        <input type="radio" name="rating" value="3"><i></i>
-                                                        <input type="radio" name="rating" value="4"><i></i>
-                                                        <input type="radio" name="rating" value="5"><i></i> --}}
-                                                    </div>
-                                                    <div class="mt-3">
-                                                        <span id="rating-value" class="h4">0</span> out of 5 stars
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-groupmb-3">
-                                                <label for="exampleFormControlTextarea" class="form-label">How did it happen?</label>
-                                                <div class="form-control-wrap">
-
-                                                    <div id="editor">{!! old('story') !!}</div>
-                                                    <input type="hidden" name="story" id="story-content">
-
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <button class="btn btn-secondary btn-sm mt-2">Submit Story</button>
-                                            </div>
-                                       
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">How did it happen?</label>
+                    <div id="editor">{!! old('story') !!}</div>
+                    <input type="hidden" name="story" id="story-content">
                 </div>
-            </div>
 
-
-
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-secondary">Submit Story</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
 
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -251,7 +203,7 @@
 <script>
     $(document).ready(function () {
         $('#tags').select2({
-            placeholder: "Select tags",
+            placeholder: "Select tags that match your story",
             allowClear: true
         });
     });
