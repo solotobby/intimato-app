@@ -32,7 +32,7 @@
                                             <div class="fs-6 text-light mb-0">Daily Visit</div>
                                             {{-- <a href="document-drafts.html" class="link link-blue">See All</a> --}}
                                         </div>
-                                        <h5 class="fs-1">{{ $dailyVisit }} <small class="fs-3">Visits today</small></h5>
+                                        <h5 class="fs-1">{{ @$dailyVisit }} <small class="fs-3">Visits today</small></h5>
                                         {{-- <div class="fs-7 text-light mt-1"><span class="text-dark">7</span>/10 free drafts created</div> --}}
                                     </div>
                                 </div><!-- .card -->
@@ -41,11 +41,11 @@
                                 <div class="card card-full bg-indigo bg-opacity-10 border-0">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between mb-1">
-                                            <div class="fs-6 text-light mb-0">Documents Available</div>
-                                            <a href="document-saved.html" class="link link-indigo">See All</a>
+                                            <div class="fs-6 text-light mb-0">Users</div>
+                                            {{-- <a href="document-saved.html" class="link link-indigo">See All</a> --}}
                                         </div>
-                                        <h5 class="fs-1">6 <small class="fs-3">Documents</small></h5>
-                                        <div class="fs-7 text-light mt-1"><span class="text-dark">4</span>/10 free documents created</div>
+                                        <h5 class="fs-1">{{ $users->count() }} <small class="fs-3">Registered</small></h5>
+                                        {{-- <div class="fs-7 text-light mt-1"><span class="text-dark">4</span>/10 free documents created</div> --}}
                                     </div>
                                 </div><!-- .card -->
                             </div><!-- .col -->

@@ -1,5 +1,5 @@
 @extends('components.layouts.landingpage.master')
-@section('title', $metaTitle ?? 'Read anonymous confessions | Intimatu')
+@section('title', $post->title ?? 'Read anonymous confessions | Intimatu')
 @section('content')
 
 <section class="section has-mask">
@@ -10,7 +10,7 @@
                 <div class="col-xxl-8 col-xl-9 col-lg-10">
                     <div class="text-center">
                         <h6 class="overline-title text-primary">{{ $post->category }}</h6>
-                        <h1 class="title">{{ $post->where_it_happen }}</h1>
+                        <h1 class="title">{{ $post->title }}</h1>
                         <ul class="list list-row gx-2">
                             {{-- <li>
                                 <div class="sub-text fs-5">Feb 10, 2023</div>
