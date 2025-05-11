@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Livewire\Admin\AdminDashboard;
 use App\Livewire\Admin\Subscription;
 use App\Livewire\Admin\Tag;
+use App\Livewire\Admin\UserList;
 use App\Livewire\Dashboard;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -68,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
     Route::get('subscription/list', Subscription::class)->name('admin.subscription');
     Route::get('admin/tags', Tag::class)->name('admin.tags');
+    Route::get('users/list', UserList::class)->name('users.list');
 
     Route::get('generate/paypal/product', [AdminController::class, 'createPaypalProduct'])->name('generate.paypal.product');
     Route::get('generate/paypal/{plan}/{id}', [AdminController::class, 'GeneratePaypalId']);

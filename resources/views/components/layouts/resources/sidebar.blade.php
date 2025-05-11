@@ -79,6 +79,14 @@
                             </a>
                         </li>
                         <li class="nk-menu-item has-sub">
+                            <a href="{{route('users.list')}}" class="nk-menu-link">
+                                <span class="nk-menu-icon">
+                                    <em class="icon ni ni-users"></em>
+                                </span>
+                                <span class="nk-menu-text">Users</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item has-sub">
                             <a href="{{route('admin.tags')}}" class="nk-menu-link">
                                 <span class="nk-menu-icon">
                                     <em class="icon ni ni-list"></em>
