@@ -139,40 +139,47 @@
                             <table class="table table-middle mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="tb-col tb-col-check">
+                                        {{-- <th class="tb-col tb-col-check">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="">
                                             </div>
-                                        </th>
+                                        </th> --}}
                                         <th class="tb-col">
-                                            <h6 class="overline-title">Name</h6>
+                                            <h6 class="overline-title">Title</h6>
                                         </th>
                                         <th class="tb-col tb-col-sm">
-                                            <h6 class="overline-title">Type</h6>
+                                            <h6 class="overline-title">Poster</h6>
                                         </th>
                                         <th class="tb-col tb-col-md">
-                                            <h6 class="overline-title">Last Modified</h6>
+                                            <h6 class="overline-title">Category</h6>
                                         </th>
-                                        <th class="tb-col"></th>
+                                        <th class="tb-col">
+                                            <h6 class="overline-title">When Added</h6>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($posts as $item)
                                     <tr>
-                                        <td class="tb-col tb-col-check">
+                                        {{-- <td class="tb-col tb-col-check">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="">
                                             </div>
-                                        </td>
+                                        </td> --}}
                                         <td class="tb-col">
-                                            <div class="caption-text">The Impact of Artificial Intelligence on the Future of Work</div>
+                                            <div class="caption-text">{{ $item->title }}</div>
                                         </td>
                                         <td class="tb-col tb-col-sm">
-                                            <div class="badge text-bg-dark-soft rounded-pill px-2 py-1 fs-6 lh-sm">Document</div>
+                                            <div class="fs-6 text-light d-inline-flex flex-wrap gap gx-2">{{$item->user->name}}</div>
                                         </td>
                                         <td class="tb-col tb-col-md">
-                                            <div class="fs-6 text-light d-inline-flex flex-wrap gap gx-2"><span>Feb 15,2023 </span> <span>02:31 PM</span></div>
+                                            <div class="badge text-bg-dark-soft rounded-pill px-2 py-1 fs-6 lh-sm">{{ $item->category }}</div>
+                                           
                                         </td>
-                                        <td class="tb-col tb-col-end">
+                                        <td class="tb-col tb-col-sm">
+                                            <div class="fs-6 text-light d-inline-flex flex-wrap gap gx-2">{{$item->created_at}}</div>
+                                        </td>
+                                        {{-- <td class="tb-col tb-col-end">
                                             <div class="dropdown">
                                                 <button class="btn btn-sm btn-icon btn-zoom me-n1" type="button" data-bs-toggle="dropdown">
                                                     <em class="icon ni ni-more-h"></em>
@@ -193,122 +200,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
-                                    <tr>
-                                        <td class="tb-col tb-col-check">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                            </div>
-                                        </td>
-                                        <td class="tb-col">
-                                            <div class="caption-text">How to Boost Your Online Presence with Social Media Marketing</div>
-                                        </td>
-                                        <td class="tb-col tb-col-sm">
-                                            <div class="badge text-bg-blue-soft rounded-pill px-2 py-1 fs-6 lh-sm">Social Media</div>
-                                        </td>
-                                        <td class="tb-col tb-col-md">
-                                            <div class="fs-6 text-light d-inline-flex flex-wrap gap gx-2"><span>Feb 15,2023 </span> <span>02:31 PM</span></div>
-                                        </td>
-                                        <td class="tb-col tb-col-end">
-                                            <div class="dropdown">
-                                                <button class="btn btn-sm btn-icon btn-zoom me-n1" type="button" data-bs-toggle="dropdown">
-                                                    <em class="icon ni ni-more-h"></em>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <div class="dropdown-content">
-                                                        <ul class="link-list link-list-hover-bg-primary link-list-md">
-                                                            <li>
-                                                                <a href="#l"><em class="icon ni ni-eye"></em><span>View Document</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em class="icon ni ni-edit"></em><span>Rename</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em class="icon ni ni-trash"></em><span>Move to Trash</span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tb-col tb-col-check">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                            </div>
-                                        </td>
-                                        <td class="tb-col">
-                                            <div class="caption-text">Top 10 Tips for Effective Time Management in the Workplace</div>
-                                        </td>
-                                        <td class="tb-col tb-col-sm">
-                                            <div class="badge text-bg-primary-soft rounded-pill px-2 py-1 fs-6 lh-sm">Blog Content</div>
-                                        </td>
-                                        <td class="tb-col tb-col-md">
-                                            <div class="fs-6 text-light d-inline-flex flex-wrap gap gx-2"><span>Feb 15,2023 </span> <span>02:31 PM</span></div>
-                                        </td>
-                                        <td class="tb-col tb-col-end">
-                                            <div class="dropdown">
-                                                <button class="btn btn-sm btn-icon btn-zoom me-n1" type="button" data-bs-toggle="dropdown">
-                                                    <em class="icon ni ni-more-h"></em>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <div class="dropdown-content">
-                                                        <ul class="link-list link-list-hover-bg-primary link-list-md">
-                                                            <li>
-                                                                <a href="#l"><em class="icon ni ni-eye"></em><span>View Document</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em class="icon ni ni-edit"></em><span>Rename</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em class="icon ni ni-trash"></em><span>Move to Trash</span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tb-col tb-col-check">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                            </div>
-                                        </td>
-                                        <td class="tb-col">
-                                            <div class="caption-text">Transforming Healthcare with Big Data: Exploring the Opportunities</div>
-                                        </td>
-                                        <td class="tb-col tb-col-sm">
-                                            <div class="badge text-bg-purple-soft rounded-pill px-2 py-1 fs-6 lh-sm">Website Copy &amp; SEO</div>
-                                        </td>
-                                        <td class="tb-col tb-col-md">
-                                            <div class="fs-6 text-light d-inline-flex flex-wrap gap gx-2"><span>Feb 15,2023 </span> <span>02:31 PM</span></div>
-                                        </td>
-                                        <td class="tb-col tb-col-end">
-                                            <div class="dropdown">
-                                                <button class="btn btn-sm btn-icon btn-zoom me-n1" type="button" data-bs-toggle="dropdown">
-                                                    <em class="icon ni ni-more-h"></em>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <div class="dropdown-content">
-                                                        <ul class="link-list link-list-hover-bg-primary link-list-md">
-                                                            <li>
-                                                                <a href="#l"><em class="icon ni ni-eye"></em><span>View Document</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em class="icon ni ni-edit"></em><span>Rename</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em class="icon ni ni-trash"></em><span>Move to Trash</span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @endforeach
+                                    
+                                  
                                 </tbody>
                             </table>
                         </div>

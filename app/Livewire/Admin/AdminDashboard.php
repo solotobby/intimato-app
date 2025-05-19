@@ -14,6 +14,7 @@ class AdminDashboard extends Component
     public $prem;
     public $basic;
     public $users;
+    public $posts;
     public $dailyVisit;
 
     public function mount(){
@@ -26,6 +27,7 @@ class AdminDashboard extends Component
             $this->dailyVisit = 0;
         }
         $this->users = User::where('role', 'regular')->get();
+        $this->posts = Post::with('user')->get();
         // $this->prem = $this->total->where('is_premium', true)->count();  
         // $this->basic = $this->total->where('is_premium', false)->count();    
     }
