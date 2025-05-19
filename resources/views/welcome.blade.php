@@ -22,9 +22,10 @@
                 <div class="col-md-6 col-xl-4">
                     <div class="card border-0 shadow-tiny rounded-4">
                         <div class="card-body p-4">
-                            {{-- <a class="d-block" href="blog-single.html"><img class="rounded-4 w-100" src="images/blog/a.jpg" alt=""></a> --}}
+                            <a class="d-block" href="{{ url('story/'.$item->_id) }}"><img class="rounded-4 w-100" src="{{asset('assets_/blog/img.png')}}" alt=""></a>
                             <a href="#" class="badge px-3 py-2 mt-4 mb-3 text-bg-primary-soft fw-normal rounded-pill">{{ $item->category}}</a>
                             <h3><a href="{{ url('story/'.$item->_id) }}" class="link-dark line-clamp-2">{{$item->title}}</a></h3>
+                            <p>It was a great and mighty time It was a great and mighty timeIt was a great and mighty time</p>
                             <div class="d-flex pt-4">
                                 <div class="media media-lg media-middle media-lg rounded-pill">
                                     <em class="icon mx-0 ni ni-user"></em>
@@ -38,7 +39,8 @@
                                         </li> --}}
                                         <li><em class="icon mx-0 ni ni-eye"></em></li>
                                         <li>
-                                            <div class="sub-text">{{ $item->views }}</div>
+                                           
+                                            <div class="sub-text">{{ $item->views  }}</div>
                                         </li>
                                     </ul>
                                 </div>
