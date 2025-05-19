@@ -75,6 +75,7 @@ class LandingPageController extends Controller
 
        $posted = Post::create([
             'user_id' => 1,
+            'title' => $request->title, 
             '_id' => rand(999,99999),
             'where_it_happen' => $request->where_it_happen, 
             'age' => $request->age, 
@@ -177,6 +178,7 @@ class LandingPageController extends Controller
     }
 
     public function subscribe(){
+
         return view('subscribe');
     }
 }
