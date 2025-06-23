@@ -49,11 +49,16 @@
                     </div><!-- .card -->
                 </div><!-- .col -->
                 @endforeach
+
+                <div class="d-flex justify-content-center">
+                    {!! $posts->links('pagination::bootstrap-4') !!}
+                </div>
+              
                 
                 
             </div><!-- .row -->
         </div>
-
+        
 
         {{-- <div class="section-content">
             <div class="row text-center g-gs">

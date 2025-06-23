@@ -17,7 +17,7 @@ class LandingPageController extends Controller
 {
     public function landingPage(){
         dailyVisit('home_page');
-        $posts = Post::orderBy('created_at', 'DESC')->get();
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(12);
         return view('welcome', ['posts' => $posts]);
     }
 

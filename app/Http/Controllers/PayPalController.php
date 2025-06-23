@@ -12,7 +12,7 @@ class PayPalController extends Controller
         $url = request()->fullUrl();
         $url_components = parse_url($url);
         parse_str($url_components['query'], $params);
-        // $id = $params['subscription_id'];
+        //$id = $params['subscription_id'];
         return redirect('dashboard');
     }
 
