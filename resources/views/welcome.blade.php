@@ -25,7 +25,20 @@
                             <a class="d-block" href="{{ url('story/'.$item->_id) }}"><img class="rounded-4 w-100" src="{{asset('assets_/blog/img.png')}}" alt=""></a>
                             <a href="#" class="badge px-3 py-2 mt-4 mb-3 text-bg-primary-soft fw-normal rounded-pill">{{ $item->category}}</a>
                             <h3><a href="{{ url('story/'.$item->_id) }}" class="link-dark line-clamp-2">{{$item->title}}</a></h3>
-                            <p>It was a great and mighty time It was a great and mighty timeIt was a great and mighty time</p>
+                            <p>
+                                <a href="" style="color: black">
+                                <?php  
+
+                                   // $text = "Laravel is a web application framework with expressive syntax.";
+                                    $words = explode(' ', $item->story);
+                                    $short = implode(' ', array_slice($words, 0, 18)) . '...';
+
+                                ?>
+                               {!! $short !!}
+
+                                </a>
+
+                            </p>
                             <div class="d-flex pt-4">
                                 <div class="media media-lg media-middle media-lg rounded-pill">
                                     <em class="icon mx-0 ni ni-user"></em>

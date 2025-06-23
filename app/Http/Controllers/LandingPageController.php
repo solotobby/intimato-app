@@ -99,43 +99,46 @@ class LandingPageController extends Controller
 
     public function viewStory($_id){
 
-          // Capture details
-          $ip = request()->ip();
-          $userAgent = substr(request()->userAgent(), 0, 100);
-          $cookieId = request()->cookie('visitor_token') ?? (string) Str::uuid();
-  
-          // Set persistent cookie (if missing)
-          if (!request()->cookie('visitor_token')) {
-              Cookie::queue('visitor_token', $cookieId, 43200); // 30 days
-          }
-  
-          // Build composite device identifier (stronger fingerprinting)
-          $deviceHash = sha1($ip . '|' . $userAgent . '|' . $cookieId);
-  
-          // Track using Laravel Cache
-          $cacheKey = "story_views_{$deviceHash}";
-  
-          $views = Cache::get($cacheKey, [
-             
-              'reset_at' => now()->addDays(30),
-              'stories_read' => []  // Array to hold story data
-          ]);
-  
-          // Auto reset count after 30 days
-          if (now()->greaterThan($views['reset_at'])) {
-              $views = [
-                  'reset_at' => now()->addDays(30),
-                  'stories_read' => []  // Array to hold story data
-              ];
-          }
+        $post = Post::where('_id', $_id)->first();
+        if($post){
+
+             // Capture details
+            $ip = request()->ip();
+            $userAgent = substr(request()->userAgent(), 0, 100);
+            $cookieId = request()->cookie('visitor_token') ?? (string) Str::uuid();
+    
+            // Set persistent cookie (if missing)
+            if (!request()->cookie('visitor_token')) {
+                Cookie::queue('visitor_token', $cookieId, 43200); // 30 days
+            }
+    
+            // Build composite device identifier (stronger fingerprinting)
+            $deviceHash = sha1($ip . '|' . $userAgent . '|' . $cookieId);
+    
+            // Track using Laravel Cache
+            $cacheKey = "story_views_{$deviceHash}";
+    
+            $views = Cache::get($cacheKey, [
+                
+                'reset_at' => now()->addDays(30),
+                'stories_read' => []  // Array to hold story data
+            ]);
+    
+            // Auto reset count after 30 days
+            if (now()->greaterThan($views['reset_at'])) {
+                $views = [
+                    'reset_at' => now()->addDays(30),
+                    'stories_read' => []  // Array to hold story data
+                ];
+            }
   
          
-        // Redirect if more than 5 stories read
+            // Redirect if more than 5 stories read
             if (count($views['stories_read']) >= 20) {
                 return redirect()->route('subscribe');
             }
          
-            $post = Post::where('_id', $_id)->first();
+           
 
             // Avoid duplicates
             $alreadyRead = collect($views['stories_read'])->pluck('id')->contains($post->id);
@@ -151,30 +154,32 @@ class LandingPageController extends Controller
             // Save it back
             Cache::put($cacheKey, $views, $views['reset_at']);
 
+            // Store in session for frontend notice
+            session(['readCount' => count($views['stories_read'])]);
 
-          // Store in session for frontend notice
-          session(['readCount' => count($views['stories_read'])]);
 
+            $post->views += 1;
+            $post->save();
 
-       
-        $post->views += 1;
-        $post->save();
+            $relatedStories = Post::where('category', $post->category)
+            ->where('id', '!=', $post->id)
+            ->whereHas('tags', function ($query) use ($post) {
+                $query->whereIn('tags.id', $post->tags->pluck('id'));
+            })
+            // ->with('tags')
+            ->limit(3)
+            ->get();
 
-        $relatedStories = Post::where('category', $post->category)
-        ->where('id', '!=', $post->id)
-        ->whereHas('tags', function ($query) use ($post) {
-            $query->whereIn('tags.id', $post->tags->pluck('id'));
-        })
-        // ->with('tags')
-        ->limit(3)
-        ->get();
+            $metaTitle = $post->where_it_happen;
+            // $keywords = $post->tags->pluck('name')->toArray();
+            // $keywordsArray = implode(', ', $keywords);
+            return view('view_story', ['post' => $post, 'relatedStories' => $relatedStories, 'metaTitle' => $metaTitle]);
 
-        $metaTitle = $post->where_it_happen;
-        // $keywords = $post->tags->pluck('name')->toArray();
-        // $keywordsArray = implode(', ', $keywords);
-        
-        
-        return view('view_story', ['post' => $post, 'relatedStories' => $relatedStories, 'metaTitle' => $metaTitle]);
+        }else{
+            //future update: an error message should me sent to me
+            abort(404);
+        }
+         
     }
 
     public function subscribe(){
