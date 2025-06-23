@@ -41,7 +41,63 @@
                             <li><a class="link-secondary" href="#"><em class="icon fs-3 ni ni-twitter"></em></a></li>
                             <li><a class="link-secondary" href="#"><em class="icon fs-3 ni ni-linkedin-round"></em></a></li>
                         </ul> --}}
+
+                       
                     </div>
+
+                     <hr>
+                        <div class="col-md-12">
+
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="d-flex align-items-center">
+                            <button class="btn btn-sm btn-outline-danger me-2" onclick="toggleHeart(this)">
+                                ❤️ <span id="like-count">12</span>
+                            </button>
+                            <span class="text-muted me-3">💬 <span id="comment-count">2</span> comments</span>
+                            </div>
+                            <div>
+                            <small class="text-muted">👁️ 124 page views</small>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                             <h5>Comments</h5>
+                            <!-- Single Comment -->
+                           <div class="card mb-2">
+                                <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="mb-1">Emily Carter</h6>
+                                    <small class="text-muted">June 23, 2025 at 2:45 PM</small>
+                                </div>
+                                <p>Beautifully written. I felt every moment of the struggle described.</p>
+                                </div>
+                            </div>
+
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="mb-1">David Lee</h6>
+                                    <small class="text-muted">June 23, 2025 at 3:10 PM</small>
+                                </div>
+                                <p>This story reminds me of something I went through last year. Very touching.</p>
+                                </div>
+                            </div>
+
+                            <!-- Comment Input -->
+                            <div class="card">
+                                <div class="card-body">
+                                <h6 class="card-title">Add a comment</h6>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="3" placeholder="Write your comment..."></textarea>
+                                </div>
+                                <button class="btn btn-primary">Post Comment</button>
+                                </div>
+                            </div>
+                            </div>
+
+                        </div>
+
+
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .section-content -->

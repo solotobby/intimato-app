@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use App\Models\Post;
 use App\Models\PostTag;
 use App\Models\Tag;
@@ -185,5 +186,22 @@ class LandingPageController extends Controller
     public function subscribe(){
 
         return view('subscribe');
+    }
+
+    public function feedback(){
+        return  view('feedback');
+    }
+
+    public function storeFeedback(Request $request){
+        $validated = $request->validate([
+        'content' => 'required|string|max:1000',
+        'sentiment' => 'required|in:happy,neutral,sad',
+       
+    ]);
+    
+
+        Feedback::create($validated);
+
+        return back()->with('success', 'Thank you for your feedback!');
     }
 }

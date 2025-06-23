@@ -30,6 +30,8 @@ Route::get('/submit', [LandingPageController::class, 'submitStory'])->name('subm
 Route::post('/submit/story', [LandingPageController::class, 'storeStory'])->name('submit.story');
 Route::get('/story/{_id}', [LandingPageController::class, 'viewStory']);
 Route::get('/subscribe', [LandingPageController::class, 'subscribe'])->name('subscribe');
+Route::get('/feedback', [LandingPageController::class, 'feedback'])->name('feedback');
+Route::post('/feedback', [LandingPageController::class, 'storeFeedback'])->name('feedback.store');
 
 
 
