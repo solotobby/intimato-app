@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Feedback;
+use App\Models\Likes;
 use App\Models\Post;
 use App\Models\PostTag;
 use App\Models\Tag;
@@ -110,7 +112,7 @@ class LandingPageController extends Controller
     
             // Set persistent cookie (if missing)
             if (!request()->cookie('visitor_token')) {
-                Cookie::queue('visitor_token', $cookieId, 43200); // 30 days
+                Cookie::queue('visitor_token', $cookieId, 172800); // 120 days
             }
     
             // Build composite device identifier (stronger fingerprinting)
@@ -170,11 +172,14 @@ class LandingPageController extends Controller
             // ->with('tags')
             ->limit(3)
             ->get();
+            $comments = Comment::where('post_id', $post->id)
+                       ->latest()
+                       ->get();
 
             $metaTitle = $post->where_it_happen;
             // $keywords = $post->tags->pluck('name')->toArray();
             // $keywordsArray = implode(', ', $keywords);
-            return view('view_story', ['post' => $post, 'relatedStories' => $relatedStories, 'metaTitle' => $metaTitle]);
+            return view('view_story', ['post' => $post, 'relatedStories' => $relatedStories, 'metaTitle' => $metaTitle, 'deviceHash' => $deviceHash, 'comments' => $comments]);
 
         }else{
             //future update: an error message should me sent to me
@@ -187,6 +192,57 @@ class LandingPageController extends Controller
 
         return view('subscribe');
     }
+
+    public function toggleLike(Request $request)
+    {
+       
+        $hash = $request->hash;
+        $storyId = $request->story_id;
+
+        $post = Post::where('id', $storyId)->first();
+    
+         $like = Likes::where('hash', $hash)->where('post_id', $storyId)->first();
+
+        if ($like) {
+            $like->delete();
+            $post->likes -= 1;
+            $post->save();
+            return response()->json(['liked' => false, 'likes' => $post->likes]);
+        } else {
+            Likes::create(['user_id' => 1, 'hash' => $hash, 'post_id' => $storyId]);
+            $post->likes += 1;
+            $post->save();
+            return response()->json(['liked' => true, 'likes' => $post->likes]);
+
+            // Likes::where('post_id', $storyId)->count()
+        }
+    }
+
+     public function postComment(Request $request)
+    {
+        $validated = $request->validate([
+            'story_id' => 'required|exists:posts,id',
+            'content' => 'required|string|max:1000',
+            'hash' => 'required|string',
+        ]);
+
+         [$validated['content'], $validated['story_id']];
+
+        $comment = Comment::create([
+            'post_id' => $validated['story_id'],
+            'user_id' => 1,
+            'message' => $validated['content'],
+            'hash' => $validated['hash']
+        ]);
+
+        return response()->json([
+            'username' => 'Anonymous',//$comment->user->name,
+            'message' => $comment->message,
+            'timestamp' => $comment->created_at->format('F j, Y \a\t g:i A')
+        ]);
+    }
+
+
 
     public function feedback(){
         return  view('feedback');

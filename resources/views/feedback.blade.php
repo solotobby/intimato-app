@@ -22,8 +22,20 @@
                 <div class="row">
                     <div class="card mt-4 col-md-8 mx-auto">
                          @if(session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
+                                <div class="alert alert-success mt-3">{{ session('success') }}</div>
                          @endif
+
+                         @if ($errors->any())
+                            <div class="alert alert-danger mt-3">
+                                {{-- <strong>Please fix the following errors:</strong> --}}
+                                <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
 
                         <div class="card-body">
                             {{-- <h5 class="card-title">We'd love your feedback</h5> --}}

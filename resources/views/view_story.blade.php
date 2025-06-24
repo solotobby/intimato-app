@@ -15,11 +15,11 @@
                             {{-- <li>
                                 <div class="sub-text fs-5">Feb 10, 2023</div>
                             </li> --}}
-                            <li><em class="icon mx-0 ni ni-eye"></em></li>
-                            <li>
-                                <div class="sub-text fs-5">{{ $post->views }} </div>
-                                {{-- - {{ session('readCount') }} --}}
-                            </li>
+                            {{-- <li><em class="icon mx-0 ni ni-eye"></em></li> --}}
+                            {{-- <li>
+                                <div class="sub-text fs-5" >{{ $deviceHash }} </div>
+                                - {{ session('readCount') }}
+                            </li> --}}
                         </ul>
                         <div class="my-5">
                             <img class="rounded-4 w-100" src="images/blog/cover.jpg" alt="">
@@ -48,51 +48,45 @@
                      <hr>
                         <div class="col-md-12">
 
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <div class="d-flex align-items-center">
-                            <button class="btn btn-sm btn-outline-danger me-2" onclick="toggleHeart(this)">
-                                ❤️ <span id="like-count">12</span>
-                            </button>
-                            <span class="text-muted me-3">💬 <span id="comment-count">2</span> comments</span>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="d-flex align-items-center">
+                                <button class="btn btn-sm btn-outline-danger me-2"  
+                                    data-story-id="{{ $post->id }}"
+                                    data-device-hash="{{ $deviceHash }}" 
+                                    onclick="toggleHeart(this)">
+                                    ❤️ <span id="like-count">   {{ $post->likes }} </span>
+                                </button>
+                                <span class="text-muted me-3">💬 <span id="comment-count">{{ $comments->count() }}</span> comments</span>
+                                </div>
+                                <div>
+                                <small class="text-muted">👁️ {{ $post->views }}  page views</small>
+                                </div>
                             </div>
-                            <div>
-                            <small class="text-muted">👁️ 124 page views</small>
-                            </div>
-                        </div>
 
                         <div class="mt-4">
                              <h5>Comments</h5>
-                            <!-- Single Comment -->
-                           <div class="card mb-2">
-                                <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="mb-1">Emily Carter</h6>
-                                    <small class="text-muted">June 23, 2025 at 2:45 PM</small>
+                                @foreach($comments as $comment)
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="mb-1">Anonymous</h6>
+                                        <small class="text-muted">{{$comment->created_at->format('F j, Y \a\t g:i A')}}</small>
+                                    </div>
+                                    <p>{{$comment->message}}</p>
+                                    </div>
                                 </div>
-                                <p>Beautifully written. I felt every moment of the struggle described.</p>
-                                </div>
-                            </div>
+                                @endforeach
 
-                            <div class="card mb-2">
-                                <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="mb-1">David Lee</h6>
-                                    <small class="text-muted">June 23, 2025 at 3:10 PM</small>
+                                <!-- Comment Input -->
+                                <div class="card" id="comment-form" data-story-id="{{ $post->id }}" data-device-hash="{{ $deviceHash }}">
+                                    <div class="card-body">
+                                    <h6 class="card-title">Add a comment</h6>
+                                    <div class="mb-3">
+                                        <textarea class="form-control" name="content"  rows="3" placeholder="Write your comment..."></textarea>
+                                    </div>
+                                    <button class="btn btn-primary submit-comment">Post Comment</button>
+                                    </div>
                                 </div>
-                                <p>This story reminds me of something I went through last year. Very touching.</p>
-                                </div>
-                            </div>
-
-                            <!-- Comment Input -->
-                            <div class="card">
-                                <div class="card-body">
-                                <h6 class="card-title">Add a comment</h6>
-                                <div class="mb-3">
-                                    <textarea class="form-control" rows="3" placeholder="Write your comment..."></textarea>
-                                </div>
-                                <button class="btn btn-primary">Post Comment</button>
-                                </div>
-                            </div>
                             </div>
 
                         </div>
@@ -232,6 +226,74 @@
         </div><!-- .section-wrap -->
     </div><!-- .container -->
 </section>
+
+<script>
+
+function toggleHeart(button) {
+  const storyId = button.getAttribute('data-story-id');
+  const deviceHash = button.getAttribute('data-device-hash');
+
+   
+   fetch('/like/story', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    },
+    body: JSON.stringify({ story_id: storyId, hash: deviceHash})
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    button.classList.toggle("btn-danger", data.liked);
+    button.classList.toggle("btn-outline-danger", !data.liked);
+    button.querySelector("#like-count").textContent = data.likes;
+  });
+}
+
+
+
+document.querySelector(".submit-comment").addEventListener("click", function () {
+    const wrapper = document.getElementById("comment-form");
+  const content = wrapper.querySelector("textarea").value;
+  const storyId = wrapper.getAttribute("data-story-id");
+  const hash = wrapper.getAttribute("data-device-hash");
+
+//   alert([content, storyId, hash, wrapper]);
+    fetch('/story/comment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+      },
+      body: JSON.stringify({ story_id: storyId, content: content, hash: hash })
+    })
+    .then(res => res.json())
+    .then(data => {
+        const commentHTML = `
+        <div class="card mb-2">
+            <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h6 class="mb-1">${data.username}</h6>
+                <small class="text-muted">${data.timestamp}</small>
+            </div>
+            <p>${data.message}</p>
+            </div>
+        </div>`;
+        
+        // Insert new comment above the textarea
+        document.querySelector("h5 + .card").insertAdjacentHTML("beforebegin", commentHTML);
+        
+        // Clear input
+        wrapper.querySelector("textarea").value = '';
+
+        // Update comment count
+        const countEl = document.getElementById("comment-count");
+        countEl.textContent = parseInt(countEl.textContent) + 1;
+    });
+  });
+
+</script>
 
 
 @endsection

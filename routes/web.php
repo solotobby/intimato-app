@@ -33,7 +33,8 @@ Route::get('/subscribe', [LandingPageController::class, 'subscribe'])->name('sub
 Route::get('/feedback', [LandingPageController::class, 'feedback'])->name('feedback');
 Route::post('/feedback', [LandingPageController::class, 'storeFeedback'])->name('feedback.store');
 
-
+Route::post('like/story', [LandingPageController::class, 'toggleLike']);
+Route::post('story/comment', [LandingPageController::class, 'postComment']);
 
 Route::controller(GoogleController::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
