@@ -51,12 +51,12 @@
                             </a>
                         </li>
                     </ul><!-- .nk-menu-list -->
-                    <div class="mx-2 d-none d-lg-block">
+                    {{-- <div class="mx-2 d-none d-lg-block">
                         <button class="dark-mode-toggle">
                             <em class="off icon ni ni-sun-fill"></em>
                             <em class="on icon ni ni-moon-fill"></em>
                         </button>
-                    </div>
+                    </div> --}}
                     <ul class="nk-menu-buttons flex-lg-row-reverse">
                         <li><a href="{{route('submit') }}" class="btn btn-primary">Submit Story</a></li>
                         <li><a class="link link-dark" href="{{route('login')}}">Login </a></li>
