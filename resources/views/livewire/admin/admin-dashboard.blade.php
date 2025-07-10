@@ -53,11 +53,11 @@
                                 <div class="card card-full bg-cyan bg-opacity-10 border-0">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between mb-1">
-                                            <div class="fs-6 text-light mb-0">Tools Available</div>
-                                            <a href="templates.html" class="link link-cyan">All Tools</a>
+                                            <div class="fs-6 text-light mb-0">Tools Page Views</div>
+                                            {{-- <a href="templates.html" class="link link-cyan">All Tools</a> --}}
                                         </div>
-                                        <h5 class="fs-1">12 <small class="fs-3">Tools</small></h5>
-                                        <div class="fs-7 text-light mt-1"><span class="text-dark">4</span>/16 free tools used to generate content</div>
+                                        <h5 class="fs-1"> {{ $totalPageViews }} <small class="fs-3">Views</small></h5>
+                                        {{-- <div class="fs-7 text-light mt-1"><span class="text-dark">4</span>/16 free tools used to generate content</div> --}}
                                     </div>
                                 </div><!-- .card -->
                             </div><!-- .col -->
@@ -153,6 +153,9 @@
                                         <th class="tb-col tb-col-md">
                                             <h6 class="overline-title">Category</h6>
                                         </th>
+                                          <th class="tb-col tb-col-md">
+                                            <h6 class="overline-title">Views</h6>
+                                        </th>
                                         <th class="tb-col">
                                             <h6 class="overline-title">When Added</h6>
                                         </th>
@@ -174,7 +177,9 @@
                                         </td>
                                         <td class="tb-col tb-col-md">
                                             <div class="badge text-bg-dark-soft rounded-pill px-2 py-1 fs-6 lh-sm">{{ $item->category }}</div>
-                                           
+                                        </td>
+                                          <td class="tb-col tb-col-md">
+                                            <div class="badge text-bg-dark-soft rounded-pill px-2 py-1 fs-6 lh-sm">{{ $item->views }}</div>
                                         </td>
                                         <td class="tb-col tb-col-sm">
                                             <div class="fs-6 text-light d-inline-flex flex-wrap gap gx-2">{{$item->created_at}}</div>

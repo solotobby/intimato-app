@@ -16,6 +16,7 @@ class AdminDashboard extends Component
     public $users;
     public $posts;
     public $dailyVisit;
+    public $totalPageViews;
 
     public function mount(){
         $this->total = Post::query()->count();
@@ -28,6 +29,8 @@ class AdminDashboard extends Component
         }
         $this->users = User::where('role', 'regular')->get();
         $this->posts = Post::with('user')->get();
+        $this->totalPageViews = $this->posts->sum('views');
+
         // $this->prem = $this->total->where('is_premium', true)->count();  
         // $this->basic = $this->total->where('is_premium', false)->count();    
     }
